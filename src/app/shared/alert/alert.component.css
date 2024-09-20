@@ -1,0 +1,50 @@
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    position: fixed;
+    right: -400px; /* Start off-screen */
+    top: 20px;
+    z-index: 1050;
+    width: 300px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: right 0.5s ease-in-out; /* Slide in animation */
+  }
+  
+  .alert.show {
+    right: 20px; /* Slide in to this position */
+  }
+  
+  .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  
+  .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  
+  .alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+  
+  .alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+  }
+  
+  .close {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    margin-left: 10px;
+  }
+  

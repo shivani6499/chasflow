@@ -1,0 +1,373 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.center-container {
+  position: relative;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 8px;
+  width: 300px;
+  margin: auto;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+.custom-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #e9ecef;
+  border-radius: 0.375rem;
+}
+
+.custom-breadcrumb .breadcrumb-item {
+  display: inline-block;
+  font-size: 0.875rem;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  padding: 0 0.5rem;
+  color: #6c757d;
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: #6c757d;
+  cursor: default;
+}
+
+.custom-breadcrumb .breadcrumb-item:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.summary-button {
+  background-color: #009999;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.info-box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #eef5f9;
+  border-radius: 8px;
+}
+
+.info-item p {
+  margin: 5px 0;
+}
+
+.action-icons {
+  margin-bottom: 20px;
+}
+
+.action-icons button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 15px;
+  transition: color 0.3s;
+}
+
+.action-icons .favorite-button {
+  color: #009999;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.transaction-table th {
+  background-color: #f9fafb;
+}
+
+.transaction-table tr.highlight {
+  background-color: #ffeded;
+}
+
+.remove-transaction {
+  margin-top: 20px;
+}
+
+.remove-transaction table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.remove-transaction th,
+.remove-transaction td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.remove-transaction .undo-button,
+.back-button {
+  background-color: #009999;
+  color: #eee7e7;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back-button {
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .info-box {
+    flex-direction: column;
+  }
+
+  .transaction-table th,
+  .transaction-table td,
+  .remove-transaction th,
+  .remove-transaction td {
+    font-size: 12px;
+  }
+}
+.menu {
+  position: relative;
+  display: inline-block;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+}
+
+.menu-options {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: 200px;
+  padding: 0;
+  border-radius: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu-options button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.menu-options button:hover {
+  background-color: #f1f1f1;
+}
+
+.menu:hover .menu-options {
+  display: block;
+}
+.transaction-table,
+.removed-transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.transaction-table th,
+.removed-transaction-table th,
+.transaction-table td,
+.removed-transaction-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.transaction-table th,
+.removed-transaction-table th {
+  background-color: #f2f2f2;
+}
+
+.menu-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-options button {
+  margin-top: 5px;
+}
+
+.action-icons {
+  margin-bottom: 20px;
+}
+
+.summary-button,
+.favorite-button,
+.download-button {
+  margin-right: 10px;
+}
+.toggle-buttons {
+  margin-bottom: 20px;
+}
+
+.toggle-buttons button {
+  padding: 10px;
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.toggle-buttons button.active {
+  background-color: #e5f5f5;
+  border-color: #009999;
+}
+
+.transaction-table,
+.removed-transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.transaction-table th,
+.removed-transaction-table th,
+.transaction-table td,
+.removed-transaction-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.transaction-table th,
+.removed-transaction-table th {
+  background-color: #f2f2f2;
+}
+.close-button {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  height: 22px;
+  width: 22px;
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  color: black;
+}

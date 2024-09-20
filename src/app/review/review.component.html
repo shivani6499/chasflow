@@ -1,0 +1,121 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="row">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div>
+            <ol class="breadcrumb custom-breadcrumb">
+              <li class="breadcrumb-item"><a href="#">BankCashPro</a></li>
+              <li class="breadcrumb-item">
+                <a href="#">Cashflow Forecasting</a>
+              </li>
+              <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+              <li class="breadcrumb-item"><a href="#">Listing Page</a></li>
+              <li class="breadcrumb-item active bold-f-b" aria-current="page">
+                <a href="javascript:void(0)">View</a>
+              </li>
+            </ol>
+          </div>
+          <div class="button-group" style="margin-top: -12px">
+            <button
+              type="button"
+              class="btn btn-primary waves-effect waves-light"
+            >
+              <span class="tf-icons mdi mdi-plus-box-outline me-1"></span>
+              <a
+                class="a b"
+                href="javascript:void(0)"
+                routerLink="/listing-page"
+                >Initiate</a
+              >
+            </button>
+            <button class="btn btn-secondary">
+              <a
+                class="a c"
+                href="javascript:void(0)"
+                routerLink="/listing-page"
+                >Review</a
+              >
+            </button>
+            <button class="btn btn-warning">
+              <a class="a" href="javascript:void(0)" routerLink="/listing-page"
+                >Pending</a
+              >
+            </button>
+            <button class="btn btn-danger waves-effect waves-light">
+              <a
+                class="a d"
+                href="javascript:void(0)"
+                routerLink="/listing-page"
+                >Rejected</a
+              >
+            </button>
+          </div>
+        </div>
+        <h2>Corporate Client - View</h2>
+        <div class="details-header">1.1 Manual Forecasting Details</div>
+
+        <!-- Details Table -->
+        <div class="details-table row">
+          <div class="col-md-3 col-sm-6">
+            <strong>Corporate Code</strong>
+            <p>{{ singleData?.corporateCode }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Corporate Name</strong>
+            <p>{{ singleData?.corporateName }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Narration</strong>
+            <p>{{ singleData?.narration }}</p>
+          </div>
+          <div
+            class="col-md-3 col-sm-6"
+            *ngIf="singleData?.lockRecordInCashFlow"
+          >
+            <strong>Lock Record in Cash Flow</strong>
+            <p>{{ singleData?.lockRecordInCashFlow }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Forecasting As</strong>
+            <p>{{ singleData?.forecastingAs }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Entry Type</strong>
+            <p>{{ singleData?.entryType }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Account Number</strong>
+            <p>{{ singleData?.accountNumber }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Description</strong>
+            <p>{{ singleData?.description }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6" *ngIf="singleData?.mode">
+            <strong>Mode</strong>
+            <p>{{ singleData?.mode }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6" *ngIf="singleData?.accountType">
+            <strong>Account Type</strong>
+            <p>{{ singleData?.accountType }}</p>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <strong>Forecasted Amount</strong>
+            <p>
+              {{ singleData?.currency }} - {{ singleData?.forecastedAmount }}
+            </p>
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary mt-3">
+            <a class="a" href="javascript:void(0)" routerLink="/listing-page"
+              >Back</a
+            >
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

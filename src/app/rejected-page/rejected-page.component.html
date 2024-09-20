@@ -1,0 +1,138 @@
+<div class="container-xxl flex-grow-1 container-p-y"> 
+    <!-- <div class="app-ecommerce">  -->
+      <div class="row">
+        <!-- Basic Layout -->
+        <!-- <div class="col-xxl"> -->
+          <!-- <div class="card mb-4"> -->
+            <!-- <div class="card-body"> -->
+              <!-- <div class="d-flex justify-content-between align-items-center mb-4"> -->
+               
+              
+              </div> <div class="card">
+      <div class="card-body">
+        <!-- Breadcrumb and Title -->
+        <div class="d-flex justify-content-between align-items-center mb-4"> 
+          <div> 
+            <ol class="breadcrumb custom-breadcrumb">
+              <li class="breadcrumb-item"><a href="#">BankCashPro</a></li>
+              <li class="breadcrumb-item"><a href="#">Cashflow Forecasting</a></li>
+              <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+              <li class="breadcrumb-item"><a href="#">Listing Page</a></li>
+              <li class="breadcrumb-item active bold-f-b" aria-current="page"><a href="javascript:void(0)">Rejected</a></li> 
+            </ol>
+          </div>
+          <div class="button-group"style="margin-top: -22px;">
+            <button type="button" class="btn btn-primary waves-effect waves-light">
+              <span class="tf-icons mdi mdi-plus-box-outline me-1"></span>Initiate
+            </button>
+            <button class="btn btn-secondary" onclick="window.location.href='Review-List.html';">
+              Review
+            </button>
+            <button class="btn btn-warning">Pending</button>
+            <!-- <button class="btn btn-secondary" onclick="window.location.href='rejected_list.html';"> -->
+              <button class="btn btn-danger waves-effect waves-light" (click)="navigateToRejectedList()">
+                Rejected
+              </button>
+          </div>
+        </div>
+
+<!-- Search and Filter -->
+<div class="row mb-3">
+<div class="col-md-6">
+  <div class="input-group">
+    <select class="form-select" aria-label="Search By">
+      <option selected>Reference No</option>
+      <option value="1">Corporate Code</option>
+      <option value="2">Corporate Name</option>
+      <option value="3">Forecasting As</option>
+      <option value="4">Entry Type</option>
+      <!-- Add other search options as needed -->
+    </select>
+    <input type="text" class="search-value" placeholder="Enter Search Value"
+      aria-label="Search Value">
+    <button class="btn btn-primary" type="button">
+      <i class="mdi mdi-magnify"></i> Search
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- Data Table -->
+<!-- Data Table -->
+<div class="table-responsive"style="margin-top: 15px;">
+<table class="table table-bordered table-striped data-table">
+<thead class="table-light">
+<tr>
+<th scope="col">Reference No</th>
+<th scope="col">Corporate Code</th>
+<th scope="col">Corporate Name</th>
+<th scope="col">Forecasting As</th>
+<th scope="col">Entry Type</th>
+<th scope="col">Description</th>
+<th scope="col">Account No</th>
+<th scope="col">Amount</th>
+<th scope="col">Currency</th>
+<th scope="col">Recurrence Pattern</th>
+<th scope="col">Status</th>
+<th scope="col">Reject Reason</th>
+<th scope="col">Action</th>
+</tr>
+</thead>
+<tbody>
+<!-- Example row 1 -->
+<tr>
+<td>R00234</td>
+<td>C101</td>
+<td>Galaxy Toyota</td>
+<td>Inward Payment</td>
+<td>Onetime</td>
+<td>Finance Repayment</td>
+<td>657983231 - USD</td>
+<td>20,000.00</td>
+<td>AED</td>
+<td>Daily</td>
+<td>Rejected</td>
+<td>Incorrect Value</td>
+<td>
+<button class="btn btn-outline-primary waves-effect" title="View">
+<i class="mdi mdi-eye"></i>
+</button>
+<button class="btn btn-outline-warning waves-effect" title="Edit">
+<i class="mdi mdi-pencil-box-multiple-outline"></i>
+</button>
+</td>
+</tr>
+<!-- Example row 2 -->
+<tr>
+<td>R00235</td>
+<td>C102</td>
+<td>Galaxy Toyota</td>
+<td>Inward Payment</td>
+<td>Onetime</td>
+<td>Finance Repayment</td>
+<td>657983231 - USD</td>
+<td>20,000.00</td>
+<td>AED</td>
+<td>Daily</td>
+<td>Rejected</td>
+<td>Incorrect Value</td>
+<td>
+<button class="btn btn-outline-primary waves-effect" title="View">
+<i class="mdi mdi-eye"></i>
+</button>
+<button class="btn btn-outline-warning waves-effect" title="Edit">
+<i class="mdi mdi-pencil-box-multiple-outline"></i>
+</button>
+</td>
+</tr>
+<!-- Add more rows as needed -->
+</tbody>
+</table>
+</div>
+
+<div class="pagination">
+<!-- <button class="refresh-button" title="Refresh">🔄</button> -->
+<span class="page-info">1 of 1</span>
+<button class="prev-button" title="Previous">❮</button>
+<button class="next-button" title="Next">❯</button>
+</div>

@@ -1,0 +1,281 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+/* @import 'cash' */
+/* bootstrap code from internet start */
+.my-navbar {
+  border-bottom: 1px solid rgba(145, 144, 144, 0.356);
+
+  box-shadow: 1px 2px 15px rgba(179, 178, 178, 0.356);
+}
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+  pointer-events: none;
+}
+
+/* end */
+
+/* Ensure dropdown menus don't overlap and are properly positioned */
+.menu {
+  position: relative; /* Ensure the parent has relative positioning */
+}
+
+.menu-sub {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+  left: 100%; /* Adjust based on how far you want the submenu from its parent */
+  top: 0;
+  background: #fff; /* Adjust based on your design */
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure sub-menus appear above other content */
+}
+
+.menu-sub.show {
+  display: block;
+  opacity: 1;
+  transform: translateX(0); /* Ensure the menu is fully visible */
+}
+
+/* Optional: Adjust positioning if sub-menu is too close or far from the parent */
+.menu-item:hover > .menu-sub {
+  transform: translateX(0); /* Ensure no additional transformation */
+}
+
+.cashflow-menu {
+  background: #009999;
+}
+
+.cashflow-menu .cflow {
+  color: #fff; /* Text color */
+}
+
+.cashflow-menu .menu-icon {
+  color: #fff; /* Icon and text color */
+}
+/* Custom styles for table rows */
+.selectable-row:hover {
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+/* Center modal content */
+.modal-dialog {
+  max-width: 600px;
+  margin: 1.75rem auto;
+}
+
+.table-hover tbody tr:hover {
+  color: #495057;
+  background-color: #e9ecef;
+}
+
+/* Optional: Custom Styling for Breadcrumb */
+/* Optional: Custom Styling for Breadcrumb */
+.custom-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #e9ecef; /* Adjust background color */
+  border-radius: 0.375rem;
+}
+
+.custom-breadcrumb .breadcrumb-item {
+  display: inline-block;
+  font-size: 0.875rem;
+}
+
+.custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+  padding: 0 0.5rem;
+  color: #6c757d; /* Adjust separator color */
+}
+
+.custom-breadcrumb .breadcrumb-item.active {
+  color: #6c757d; /* Adjust color for active item */
+  cursor: default;
+}
+
+.custom-breadcrumb .breadcrumb-item:hover {
+  text-decoration: underline;
+}
+.dropdown-menu {
+  z-index: 1000; /* Ensure this is higher than other elements */
+}
+
+/* new styling */
+
+/* Example SCSS styles */
+.menu-item {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  margin-right: 8px;
+}
+
+/* Add more specific styles as needed */
+
+/* Base styles for the menu */
+.menu-item {
+  position: relative;
+}
+
+.menu-sub {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item:hover .menu-sub,
+.menu-item.active .menu-sub {
+  display: block;
+}
+
+.menu-link {
+  text-decoration: none;
+}
+
+/* Ensure sub-menus are hidden until activated */
+.menu-sub .menu-sub {
+  display: none;
+}
+
+/* .menu-item:hover .menu-sub .menu-sub,
+.menu-item.active .menu-sub .menu-sub {
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 0;
+} */
+.dropdown-menu {
+  min-width: 200px; /* Adjust this value based on your design */
+}
+
+/* Styles for the navbar */
+.navbar-nav .dropdown-menu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  z-index: 1000;
+  display: none;
+  min-width: 200px;
+  padding: 0.5rem 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+}
+
+/* Ensure the submenus align properly */
+.navbar-nav .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+  position: relative;
+}
+
+.navbar-nav .dropdown-menu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+  margin-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Ensure submenus do not overlap */
+.navbar-nav .dropdown-menu .dropdown-menu {
+  display: none;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover > .dropdown-menu {
+  display: block;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  z-index: 2000;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+/* Adjust z-index for overlap prevention */
+.navbar-nav .dropdown-menu {
+  z-index: 1050;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+  z-index: 1051;
+}
+
+#layout-navbar {
+  height: 70px;
+  position: relative;
+  border-bottom: 1px solid rgba(199, 199, 199, 0.356);
+  background-color: white;
+}
+#layout-menu {
+  height: 60px;
+  display: flex;
+
+  justify-content: center;
+}
+
+#navbar-collapse {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  height: 70px;
+}
+#container-nav {
+  height: 100%;
+}
+
+#second-div {
+  /* border: 1px solid red; */
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure menu is hidden by default */
+.menu-sub {
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Show sub-menu on hover of parent menu item */
+.menu-item:hover > .menu-sub,
+.menu-item .menu-link:hover + .menu-sub {
+  display: block;
+}
+
+.menu-inner {
+  overflow: visible;
+}
+
+#dropdown-size {
+  width: 300px;
+}

@@ -1,0 +1,221 @@
+
+.breadcrumb {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+h4.card-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-bar select,
+.search-bar input {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-button {
+    background-color: #33adad;
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action-buttons {
+    margin-bottom: 20px;
+}
+
+.action-buttons button {
+    padding: 6px 12px;
+    margin-right: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.initiate {
+    background-color: #33adad;
+    color: #fff;
+}
+
+.review {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.pending {
+    background-color: #fd7e14;
+    color: #fff;
+}
+
+.rejected {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.data-table th {
+    background-color: #009999;
+    color: white;
+    font-weight: bold;
+}
+
+.action-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action-icons .icon {
+    margin: 0 8px; /* Increased margin for better spacing */
+    cursor: pointer;
+    font-size: 20px; /* Standardized icon size */
+    transition: color 0.3s;
+}
+
+.edit-icon:hover {
+    color: #33adad;
+}
+
+.email-icon:hover {
+    color: #28a745;
+}
+
+.view-icon:hover {
+    color: #fd7e14;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.refresh-button,
+.prev-button,
+.next-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.page-info {
+    margin-right: 10px;
+}
+/* Optional: Custom Styling for Breadcrumb */
+.custom-breadcrumb {
+display: flex;
+flex-wrap: wrap;
+padding: 0.75rem 1.25rem;
+margin-bottom: 1rem;
+list-style: none;
+background-color: #e9ecef; /* Adjust background color */
+border-radius: 0.375rem;
+
+}
+  
+  .custom-breadcrumb .breadcrumb-item {
+    display: inline-block;
+    font-size: 0.875rem;
+
+  }
+  
+  .custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    padding: 0 0.5rem;
+    color: #6c757d; /* Adjust separator color */
+  }
+  
+  .custom-breadcrumb .breadcrumb-item.active {
+    color: #6c757d; /* Adjust color for active item */
+    cursor: default;
+  }
+  
+  .custom-breadcrumb .breadcrumb-item:hover {
+    text-decoration: underline;
+  }
+  .button-group {
+                      display: flex;
+                      justify-content: space-between;
+                      /* gap: 1rem; */
+                    }
+
+                    .button-group .btn {
+                      flex: 0.5;
+                      margin-right: 1rem;
+                    }
+
+                    .button-group .btn:last-child {
+                      margin-right: 0;
+                    }
+                     /* Default state for the search input */
+.search-value {
+  border: 1px solid #ccc; /* Default border */
+  outline: none; /* Remove the default outline */
+  padding: 8px; /* Adjust padding as needed */
+  transition: border-color 0.3s ease; /* Smooth transition for the border */
+}
+
+/* Focus state for the search input */
+.search-value:focus {
+  border: 2px solid #009999; /* Blue border on focus */
+  outline: none; /* Remove the default outline */
+}
+
+/* Styling for the search button */
+.search-button {
+  background-color: #009999;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+
+.search-button i {
+  margin-right: 5px; /* Space between icon and text */
+}
+ /* Styles specific to the "Cashflow" menu item */
+ .cashflow-menu {
+    background: #009999;
+    /* Background color */
+}
+
+.cashflow-menu .cflow {
+    color: #fff;
+    /* Text color */
+}
+
+.cashflow-menu .menu-icon {
+    color: #fff;
+    /* Icon and text color */
+}

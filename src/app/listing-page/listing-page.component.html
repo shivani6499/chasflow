@@ -1,0 +1,300 @@
+<div class="layout-page" *ngIf="!isLoading">
+  <div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y" id="width-value">
+      <div class="row">
+        <div class="col-xxl"></div>
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div>
+                <ol class="breadcrumb custom-breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">BankCashPro</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">Cashflow Forecasting</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="javascript:void(0)">Transaction</a>
+                  </li>
+                  <li
+                    class="breadcrumb-item active bold-f-b"
+                    aria-current="page"
+                  >
+                    <a href="javascript:void(0)">Listing Page</a>
+                  </li>
+                </ol>
+              </div>
+              <div class="button-group" style="margin-top: -22px">
+                <button
+                  type="button"
+                  class="btn btn-primary waves-effect waves-light highlighted"
+                  [routerLink]="['/manual-four']"
+                >
+                  <span class="tf-icons mdi mdi-plus-box-outline mt-1 me-1"></span>
+                  Initiate
+                </button>
+                <button
+                  [ngClass]="{
+                    'btn-green': currentStatus === 'review',
+                    'btn-review': currentStatus !== 'review',
+                    'waves-effect': true,
+                    'waves-light': true
+                  }"
+                  class="btn"
+                  (click)="reviewBtn()"
+                >
+                  Review
+                </button>
+                <button
+                  [ngClass]="{
+                    'btn-green': currentStatus === 'pending',
+                    'btn-pending': currentStatus !== 'pending',
+                    'waves-effect': true,
+                    'waves-light': true
+                  }"
+                  class="btn"
+                  (click)="pendingBtn()"
+                >
+                  Pending
+                </button>
+                <button
+                  [ngClass]="{
+                    'btn-green': currentStatus === 'rejected',
+                    'btn-danger': currentStatus !== 'rejected',
+                    'waves-effect': true,
+                    'waves-light': true
+                  }"
+                  class="btn"
+                  (click)="rejectBtn()"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf=" this.results.length ===0 " style="height: 200;text-align: center;">
+              <p style="text-align: center;">No data found</p>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="row mb-3" *ngIf=" this.results.length !==0 ">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <select
+                    [(ngModel)]="selectedOption"
+                    (ngModelChange)="onOptionChange()"
+                    class="form-select"
+                    aria-label="Search By"
+                  >
+                    <option [value]="0">Reference No</option>
+                    <option [value]="1">Corporate Code</option>
+                    <option [value]="2">Corporate Name</option>
+                    <option [value]="3">Forecasting As</option>
+                    <option [value]="4">Entry Type</option>
+                  </select>
+                  <input
+                    type="text"
+                    [(ngModel)]="searchValue"
+                    class="search-value"
+                    placeholder="Enter Search Value"
+                    aria-label="Search Value"
+                  />
+                  <button
+                    class="btn btn-primary"
+                    (click)="search()"
+                    type="button"
+                  >
+                    <i class="mdi mdi-magnify mt-1"></i> Search
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div 
+              class="d-flex justify-content-between align-items-center mb-3"
+              style="margin-top: 20px" *ngIf=" this.results.length !==0 "
+            >
+              <span> </span>
+              <div>
+                <button
+                  class="btn rounded-pill btn-label-primary me-2"
+                  *ngIf="authorizeAll"
+                  (click)="authorizeBtn()"
+                >
+                  Authorize
+                </button>
+                <button
+                  class="btn rounded-pill btn-label-secondary me-2 margin"
+                  *ngIf="rejectAll"
+                  (click)="showPopupBtn()"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-responsive" *ngIf=" this.results.length !==0 ">
+              <table
+                class="table table-bordered table-striped"
+                id="listingTable"
+              >
+                <thead class="table-light">
+                  <tr>
+                    <!-- <th scope="col" *ngIf="tickBox">
+                      
+                    </th> -->
+                    <th scope="col" style="width: 130px"><input style="margin-top: 3px;" *ngIf="tickBox"
+                      class="form-check-input"
+                      type="checkbox"
+                      (change)="toggleHeaderCheckbox($event)"
+                      [checked]="isChecked"
+                    /> Ref. No</th>
+                    <th scope="col">Corporate Code</th>
+                    <th scope="col">Corporate Name</th>
+                    <th scope="col">Forecasting As</th>
+                    <th scope="col">Entry Type / Recurring Pattern</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Account No</th>
+                    <th scope="col" style="width: 130px">Amount</th>
+                    <!-- <th scope="col">Currency</th> -->
+                    <!-- <th scope="col">Recurrence Pattern</th> -->
+                    <th scope="col" *ngIf="showAdditionalColumns">
+                      Rejection Reason
+                    </th>
+                    <th scope="col" *ngIf="showAdditionalColumns">Status</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let result of results; let i = index">
+                    <!-- <td *ngIf="tickBox">
+                     
+                    </td> -->
+                    <td> <input style="margin-top: 3px;" *ngIf="tickBox"
+                      class="form-check-input"
+                      [(ngModel)]="checkedItems[i]"
+                      (change)="toggleCheckbox($event, result.id)"
+                      type="checkbox"
+                    /> {{ result.referenceNumber }}</td>
+                    <td>{{ result.corporateCode }}</td>
+                    <td>{{ result.corporateName }}</td>
+                    <td>{{ result.forecastingAs }}</td>
+                    <td><span *ngIf="result.entryType ==='O'">One Time</span>  <span *ngIf="result.entryType ==='R'">Recurring</span> <span *ngIf="result.recurrencePattern ==='D'"> / Daily</span>  <span *ngIf="result.recurrencePattern ==='W'"> / Weekly</span> <span *ngIf="result.recurrencePattern ==='M'"> / Monthly</span></td>
+                    <td>{{ result.description }}</td>
+                    <td>{{ result.accountNumber }}</td>
+                    <td><span *ngIf="result.currency ==='INR' ">₹</span> {{ result.forecastedAmount }}</td>
+                    <!-- <td>{{ result.currency }}</td> -->
+                    <!-- <td></td> -->
+                    <td *ngIf="showAdditionalColumns">
+                      {{ result.rejectionReason }}
+                    </td>
+                    <td *ngIf="showAdditionalColumns">{{ result.status }}</td>
+                    <td>  
+                      <div class="flex">
+                        <button
+                        class="btn btn-outline-primary waves-effect"
+                        (click)="view($event, result.id)"
+                        *ngIf="hideOnlyPending"
+                      >
+                        <i class="mdi mdi-eye"></i>
+                      </button>
+                      <button
+                        class="btn btn-outline-warning waves-effect"
+                        *ngIf="hideOnlyPending"
+                        (click)="navigateToEdit(result.id)"
+                      >
+                        <i class="mdi mdi-pencil-box-multiple-outline"></i>
+                      </button>
+                        <button
+                          *ngIf="showOnlyPending"
+                          class="btn-none green"
+                          (click)="rightIconApi($event, result.id)"
+                          [(ngModel)]="rightIconApi"
+                        >
+                          <i class="bi bi-check2"></i>
+                        </button>
+                        <button
+                          *ngIf="showOnlyPending"
+                          class="btn-none red"
+                          (click)="showPopupIcon(result.id)"
+                        >
+                          <i class="bi bi-x"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-between align-items-center mt-3" *ngIf=" this.results.length !==0 ">
+              <span>1 of 1</span>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                  <!-- <li class="page-item disabled" (click)="onPrevious()"> -->
+                    <a
+                      class="page-link"
+                      href="javascript:void(0)"
+                      aria-label="Previous"
+                    >
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="javascript:void(0)">{{
+                      filterDataObj.page
+                    }}</a>
+                  </li>
+                  <!-- <li class="page-item disabled" (click)="onNext()"> -->
+                  <li class="page-item disabled">
+                    <a
+                      class="page-link"
+                      href="javascript:void(0)"
+                      aria-label="Next"
+                    >
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- popup.component.html 1 -->
+      <div class="popup-overlay" *ngIf="isDialogVisible">
+        <div class="popup-content">
+          <h3 class="popup-title">Reject All</h3>
+          <form class="popup-form">
+            <input
+              type="text"
+              name="rejectReason1"
+              [(ngModel)]="rejectionReason"
+              placeholder="Enter reason"
+              class="form-input"
+            />
+            <div class="popup-buttons">
+              <button
+                type="button"
+                class="btn btn-cancel"
+                (click)="onCancelIcon()"
+              >
+                Cancel
+              </button>
+              <button type="button" class="btn btn-confirm" (click)="byIcon()">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div> 
+    </div>
+    <div class="content-backdrop fade"></div>
+  </div>
+</div>

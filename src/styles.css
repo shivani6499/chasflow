@@ -1,0 +1,48 @@
+@import "assets/vendor/css/rtl/core.css";
+@import "assets/css/custom.css";
+@import "assets/css/demo.css";
+/* @import 'assets/vendor/css/rtl/core-dark.css'; */
+/* @import 'assets/vendor/css/rtl/theme-bordered-dark.css'; */
+/* @import 'assets/vendor/css/rtl/theme-bordered.css'; */
+/* @import 'assets/vendor/css/rtl/theme-default-dark.css'; */
+/* @import 'assets/vendor/css/rtl/theme-default.css';
+@import 'assets/vendor/css/rtl/theme-raspberry-dark.css';
+@import 'assets/vendor/css/rtl/theme-raspberry.css'; */
+/* @import 'assets/vendor/css/rtl/theme-semi-dark-dark.css'; */
+/* @import 'assets/vendor/css/rtl/theme-semi-dark.css'; */
+@import "assets/vendor/fonts/flag-icons.css";
+@import "assets/vendor/fonts/materialdesignicons.css";
+/* @import 'assets/vendor/css/core-dark.css'; */
+/* @import 'assets/vendor/css/theme-raspberry.css'; */
+/* @import 'assets/vendor/css/theme-bordered-dark.css'; */
+/* @import 'assets/vendor/css/theme-bordered.css'; */
+/* @import 'assets/vendor/css/theme-default-dark.css'; */
+@import "assets/vendor/css/theme-default.css";
+/* @import 'assets/vendor/css/theme-raspberry-dark.css'; */
+/* @import 'assets/vendor/css/theme-raspberry.css';
+@import 'assets/vendor/css/theme-raspberry.css'; */
+@import "assets/vendor/css/rtl/theme-default.css";
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #000;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+.table > :not(caption) > {
+  padding: 0.65rem 0.65rem !important;
+}
+.table th{
+  font-size: 14px!important;padding: 10px 4px;
+  text-align: center;
+}
+.requiredF{
+  color: red;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

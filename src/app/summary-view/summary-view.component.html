@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <ol class="breadcrumb custom-breadcrumb">
+            <li class="breadcrumb-item"><a href="#">BankCashPro</a></li>
+            <li class="breadcrumb-item">
+              <a href="#">Cashflow Forecasting</a>
+            </li>
+            <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+            <li class="breadcrumb-item active bold-f-b" aria-current="page">
+              <a href="javascript:void(0)">summary Details</a>
+            </li>
+          </ol>
+        </div>
+        <div
+          class="d-flex align-content-center flex-wrap gap-3"
+          style="margin-top: -10px"
+        ></div>
+      </div>
+      <div class="header">
+        <h2>Cash Forecasting Summary Details</h2>
+      </div>
+
+      <div class="info-box">
+        <div class="info-item">
+          <p><strong>CIF ID:</strong> {{ accountSummary.cifId }}</p>
+          <p>
+            <strong>Opening Balance (INR):</strong>
+            {{ accountSummary.openingBalance }}
+          </p>
+          <p>
+            <strong>Statement Start Date:</strong>
+            {{ accountSummary.startDate }}
+          </p>
+        </div>
+        <div class="info-item">
+          <p>
+            <strong>Corporate Name:</strong> {{ accountSummary.corporateName }}
+          </p>
+          <p>
+            <strong>Closing Balance (INR):</strong>
+            {{ accountSummary.closingBalance }}
+          </p>
+          <p><strong>End Date:</strong> {{ accountSummary.endDate }}</p>
+        </div>
+        <div class="info-item">
+          <p>
+            <strong>Account No/IBAN:</strong> {{ accountSummary.accountNumber }}
+          </p>
+          <p><strong>OD Limit (INR):</strong> {{ accountSummary.odLimit }}</p>
+        </div>
+      </div>
+
+      <div class="action-icons">
+        <!-- <button class="favorite-button" title="Favorite">⭐</button> -->
+        <button class="download-button" title="Download">
+          <i class="fa-solid fa-download" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Toggle Button -->
+      <div class="toggle-buttons">
+        <button
+          (click)="showTransactions()"
+          [class.active]="showingTransactions"
+        >
+          Show Transactions
+        </button>
+        <button
+          (click)="showRemovedTransactions()"
+          [class.active]="!showingTransactions"
+        >
+          Show Removed Transactions
+        </button>
+      </div>
+
+      <!-- Table for Transactions -->
+      <table class="transaction-table" *ngIf="showingTransactions">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Value Date</th>
+            <th>Transaction Narration</th>
+            <th>Beneficiary/Payers</th>
+            <th>Withdrawals (INR)</th>
+            <th>Deposit (INR)</th>
+            <th>Balance (INR)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactionList">
+            <td>{{ transaction.source }}</td>
+            <td>{{ transaction.valueDate | date }}</td>
+            <td>{{ transaction.narration }}</td>
+            <td>{{ transaction.beneficiaryPayers }}</td>
+            <td>{{ transaction.withdrawals }}</td>
+            <td>{{ transaction.deposits }}</td>
+            <td>{{ transaction.balance || "N/A" }}</td>
+            <td>
+              <div class="menu">
+                <button
+                  (click)="toggleMenu(transaction.id)"
+                  class="menu-button"
+                >
+                  ...
+                </button>
+                <div
+                  *ngIf="selectedTransactionId === transaction.id"
+                  class="center-container"
+                >
+                  <div class="menu-options">
+                    <div (click)="closeMenu()" class="close-button">
+                      <p>X</p>
+                    </div>
+                    <button (click)="editTransaction(transaction)">
+                      Edit this occurrence
+                    </button>
+                    <button (click)="modifyTransaction(transaction)">
+                      Modify this occurrence
+                    </button>
+                    <button (click)="deleteTransaction(transaction.id)">
+                      Delete permanently
+                    </button>
+                    <button (click)="ignoreTransaction(transaction)">
+                      Ignore this occurrence for now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Table for Removed Transactions -->
+      <table class="removed-transaction-table" *ngIf="!showingTransactions">
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Value Date</th>
+            <th>Transaction Narration</th>
+            <th>Beneficiary/Payers</th>
+            <th>Withdrawals (INR)</th>
+            <th>Deposit (INR)</th>
+            <th>Balance (INR)</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let removedTransaction of removedTransactions">
+            <td>{{ removedTransaction.source }}</td>
+            <td>{{ removedTransaction.valueDate | date }}</td>
+            <td>{{ removedTransaction.narration }}</td>
+            <td>{{ removedTransaction.beneficiaryPayers }}</td>
+            <td>{{ removedTransaction.withdrawals }}</td>
+            <td>{{ removedTransaction.deposits }}</td>
+            <td>{{ removedTransaction.balance || "N/A" }}</td>
+            <td>
+              <button (click)="restoreTransaction(removedTransaction)">
+                Restore
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

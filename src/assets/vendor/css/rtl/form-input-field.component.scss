@@ -1,0 +1,317 @@
+.default-style {
+  position: relative;
+
+  .form-group {
+    position: relative;
+    width: 100%;
+    height: 66px !important;
+    overflow: hidden;
+
+    .input-group {
+      position: relative;
+      height: 48px;
+      border-radius: 4px 4px 0 0;
+
+      .input-control {
+        position: relative;
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid var(--secondary-color-light-shade-3);
+        background-color: transparent;
+        padding: 8px 0;
+        height: 48px;
+        outline: none !important;
+        font-size: 0.875rem;
+        color: var(--text-color-dark-shade-1);
+        transition: all 0.125s ease-in-out;
+      }
+
+      .input-control:enabled.input-control:hover,
+      .input-control:focus {
+        border-color: var(--primary-color);
+        color: var(--text-color-dark-shade-1);
+      }
+
+      .input-control::placeholder {
+        visibility: hidden;
+      }
+
+      .input-control:read-only {
+        cursor: no-drop !important;
+      }
+
+      .input-control:read-only,
+      .input-control:valid,
+      .input-control:focus {
+        padding: 22px 0 7px 0 !important;
+      }
+
+      .input-label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-align: left;
+        display: block;
+        width: 100%;
+        text-overflow: ellipsis;
+        height: 48px;
+        line-height: 64px;
+        // text-transform: uppercase;
+        font-size: 0.875rem;
+        font-weight: 200;
+        cursor: text;
+        transition: all 0.125s ease-in-out;
+
+        .label {
+          color: var(--text-color-dark-shade-1);
+
+          .required {
+            color: var(--color-error) !important;
+          }
+        }
+      }
+
+      .input-label-with-icon-container,
+      .input-control-with-icon,
+      .input-control-with-icon:valid,
+      .input-control-with-icon:focus {
+        padding-left: 20px !important;
+      }
+
+      .input-control:focus + .input-label,
+      .input-label-floating {
+        height: 20px !important;
+        line-height: 20px !important;
+        font-size: 0.75rem !important;
+        color: var(--text-color);
+      }
+
+      .icon {
+        display: inline-block;
+        width: 20px;
+        position: absolute;
+        left: 0;
+        top: 22px;
+        background-color: var(--background-color);
+        padding: 0 2px;
+
+        i,
+        .app-icon {
+          color: var(--text-color);
+          font-size: 0.875rem;
+        }
+      }
+
+      .actions-wrapper {
+        display: flex;
+        white-space: nowrap;
+        position: absolute;
+        right: 0;
+        top: 22px;
+        background-color: var(--background-color);
+
+        .action {
+          display: inline-block;
+          vertical-align: top;
+          padding: 0 2px;
+          cursor: pointer;
+
+          i,
+          .app-icon {
+            color: var(--text-color);
+            font-size: 0.875rem;
+          }
+        }
+      }
+    }
+
+    .input-group-error {
+      .input-control {
+        border-color: var(--color-error) !important;
+      }
+
+      .input-label {
+        color: var(--color-error) !important;
+      }
+    }
+
+    .input-help-text,
+    .input-error {
+      color: var(--text-color);
+      position: relative;
+      display: block;
+      font-size: 0.75rem;
+    }
+
+    .input-error {
+      color: var(--color-error);
+    }
+  }
+}
+
+.bordered-style {
+  .form-group {
+    .input-group {
+      padding-top: 8px;
+
+      .input-control {
+        border: 1px solid var(--secondary-color-light-shade-3);
+        border-radius: 4px;
+        padding: 0 8px;
+        height: 40px;
+      }
+
+      .input-label {
+        padding: 0 4px;
+        margin-left: 4px;
+        line-height: 58px;
+        display: inline-block;
+        width: max-content;
+        height: 48px;
+      }
+
+      .input-control:read-only,
+      .input-control:valid,
+      .input-control:focus {
+        padding: 15px 8px !important;
+      }
+
+      .input-control:focus + .input-label,
+      .input-label-floating {
+        height: 20px;
+        line-height: 20px;
+        font-size: 0.75rem;
+        background-color: var(--background-color);
+      }
+
+      .input-control-with-icon,
+      .input-control-with-icon:valid,
+      .input-control-with-icon:focus {
+        padding-left: 24px !important;
+      }
+
+      .icon {
+        top: 18px;
+        margin-left: 4px;
+      }
+
+      .actions-wrapper {
+        top: 18px;
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+.disable-floating-label {
+  .form-group {
+    .input-group-error,
+    .input-group {
+      .input-control:focus + .input-label,
+      .input-label-floating {
+        display: none !important;
+      }
+
+      .input-label {
+        color: var(--text-color-light-shade-1) !important;
+      }
+    }
+  }
+}
+
+.no-label {
+  position: relative;
+
+  .form-group {
+    position: relative;
+    width: 100%;
+    height: 44px !important;
+    overflow: hidden;
+
+    .input-group {
+      position: relative;
+      height: 26px;
+      border-radius: 4px 4px 0 0;
+
+      .input-control {
+        height: 26px;
+      }
+
+      .input-control:read-only,
+      .input-control:valid,
+      .input-control:focus {
+        padding: 0 0 4px 0 !important;
+      }
+
+      .icon {
+        top: 3px;
+      }
+    }
+  }
+}
+
+.input-control-rtl {
+  .default-style {
+    .form-group {
+      .input-group {
+        border-radius: 4px 4px 0 0;
+
+        .input-label {
+          left: auto;
+          right: 0;
+          text-align: right;
+        }
+
+        .input-label-with-icon-container,
+        .input-control-with-icon,
+        .input-control-with-icon:valid,
+        .input-control-with-icon:focus {
+          padding-left: 0px !important;
+          padding-right: 20px !important;
+        }
+
+        .icon {
+          left: auto;
+          right: 0;
+        }
+
+        .actions-wrapper {
+          right: auto;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  .bordered-style {
+    .form-group {
+      .input-group {
+        .input-control {
+        }
+
+        .input-label {
+          margin-left: auto;
+          margin-right: 4px;
+        }
+
+        .input-control-with-icon,
+        .input-control-with-icon:valid,
+        .input-control-with-icon:focus {
+          padding-left: auto !important;
+          padding-right: 24px !important;
+        }
+
+        .icon {
+          margin-left: auto;
+          margin-right: 4px;
+        }
+
+        .actions-wrapper {
+          margin-right: auto;
+          margin-left: 4px;
+        }
+      }
+    }
+  }
+}

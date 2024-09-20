@@ -1,0 +1,309 @@
+<div class="container-xxl flex-grow-1 container-p-y"> 
+<div class="row">
+    <!-- Basic Layout -->
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div> 
+              <ol class="breadcrumb custom-breadcrumb">
+                <li class="breadcrumb-item"><a href="#">BankCashPro</a></li>
+                <li class="breadcrumb-item"><a href="#">Cashflow Forecasting</a></li>
+                <li class="breadcrumb-item"><a href="#">Transaction</a></li>
+                <li class="breadcrumb-item active bold-f-b" aria-current="page"><a href="javascript:void(0)">Manual Forecast Entry</a></li> 
+              </ol>
+            </div>
+            <!-- <div class="d-flex align-content-center flex-wrap gap-3" style="margin-top: -10px;">
+              <button class="btn btn-primary waves-effect waves-light">Discard</button>
+              <button class="btn btn-primary waves-effect waves-light">Save draft</button>
+              <button type="submit" class="btn btn-primary waves-effect waves-light">Submit Entry</button>
+            </div> -->
+          </div>
+
+          <form>
+            <!-- Row 1: Corporate Code, Corporate Name, Forecasting As -->
+<div class="row mb-3">
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="corporateCode" class="form-label">Corporate Code*</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="corporateCode" placeholder="Select Corporate Code">
+      <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#corporateCodeModal">
+        <i class="mdi mdi-magnify"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-3">
+    <label for="corporateName" class="form-label">Corporate Name </label>
+    <input type="text" class="form-control" id="corporateName" placeholder="Enter Corporate Name">
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="forecastingAs" class="form-label">Forecasting As*</label>
+    <select class="form-select" id="forecastingAs">
+      <option selected>Please Select</option>
+      <option value="inwardPayment">Inward Payment</option>
+      <option value="outwardPayment">Outward Payment</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- Row 2: Entry Type, Narration, Description -->
+<div class="row mb-3">
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="entryType" class="form-label">Entry Type*</label>
+    <select class="form-select" id="entryType" onchange="toggleValueDate()">
+      <option selected>Please Select</option>
+      <option value="one-time">One Time</option>
+      <option value="recurring">Recurring</option>
+      <!-- Add other options here -->
+    </select>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="narration" class="form-label">Narration*</label>
+    <input type="text" class="form-control" id="narration" placeholder="Enter Narration">
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="description" class="form-label">Description</label>
+    <input type="text" class="form-control" id="description" placeholder="Enter Description">
+  </div>
+</div>
+</div>
+
+<!-- Row 3: Mode, Beneficiary/Payer, Account Type -->
+<div class="row mb-3">
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="mode" class="form-label">Mode*</label>
+    <select class="form-select" id="mode">
+      <option selected>Please Select</option>
+      <!-- Options will be dynamically added here -->
+    </select>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="beneficiary" class="form-label">Beneficiary / Payer </label>
+    <input type="text" class="form-control" id="beneficiary" placeholder="Enter Beneficiary Payer">
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="accountType" class="form-label">Account Type*</label>
+    <select class="form-select" id="accountType">
+      <option selected>Please Select</option>
+      <option value="internalAccount">Internal Account</option>
+      <option value="externalAccount">External Account</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- Row 4: Account Number, Forecasted Amount, Lock Record -->
+<div class="row mb-3">
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="accountNumber" class="form-label">Account Number*</label>
+    <select class="form-select" id="accountNumber">
+      <option selected>Please Select</option>
+      <!-- Add other options here -->
+    </select>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="mb-2">
+    <label for="forecastedAmount" class="form-label">Forecasted Amount*</label>
+    <div class="input-group">
+      <select class="form-select" style="width: 25% !important;">
+        <option selected>INR</option>
+        <!-- Add other currency options here -->
+      </select>
+      <input type="text" class="form-control" placeholder="Enter Forecasted Amount" style="width: 65% !important;">
+    </div>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="form-check form-switch mt-3">
+    <input class="form-check-input" type="checkbox" id="lockRecord" style="margin-top: 20px;">
+    <label class="form-check-label" for="lockRecord" style="margin-top: 20px;">Lock Record in Cash Flow</label>
+  </div>
+</div>
+</div>
+
+<!-- Row 5: Recurring Fields -->
+<div class="row mb-3">
+<div class="col-md-4" id="valueDateField" style="display: none;">
+  <div class="mb-2">
+    <label for="valueDate" class="form-label">Value Date*</label>
+    <input type="date" class="form-control" id="valueDate">
+  </div>
+</div>
+
+<div class="col-md-4" id="recurringFieldsFrom" style="display: none;">
+  <div class="mb-3">
+    <label for="recurringFrom" class="form-label">Recurring From*</label>
+    <input type="date" class="form-control" id="recurringFrom">
+  </div>
+</div>
+
+<div class="col-md-4" id="recurringFieldsTo" style="display: none;">
+  <div class="mb-3">
+    <label for="recurringTo" class="form-label">Recurring To </label>
+    <input type="date" class="form-control" id="recurringTo">
+  </div>
+</div>
+</div>
+
+<div class="row mb-3">
+<div class="col-md-4" id="recurringFieldsPattern" style="display: none;">
+  <div class="mb-3">
+    <label for="recurringPattern" class="form-label">Recurring Pattern*</label>
+    <select class="form-select" id="recurringPattern">
+      <option selected>Please Select</option>
+      <option>Daily</option>
+      <option>Weekly</option>
+      <option>Monthly</option>
+      <!-- Add other patterns as needed -->
+    </select>
+  </div>
+</div>
+</div>
+
+  <!-- Submit Button -->
+  <div class="d-flex justify-content-start">
+    <button type="button" class="btn btn-secondary mt-3 btn-1">
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  </div>
+<!-- </form> -->
+
+ <!-- Corporate Code Modal -->
+ <div class="modal fade" id="corporateCodeModal" tabindex="-1" aria-labelledby="corporateCodeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="corporateCodeModalLabel">Corporate Code Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="search-section " style="margin-bottom: 10px;">
+          <div class="row">
+            <div class="col-lg-5"> 
+              <select class="form-select bbl-0" aria-label="Search By">
+              <option selected>Please Select</option>
+              <!-- Add more options as needed -->
+            </select></div>
+            <div class="col-lg-5">
+              <input type="text" class="form-control" placeholder="Enter Data">
+            </div>
+            <div class="col-lg-2">
+              <button class="btn btn-primary bbr-0" type="button">
+                <i class="mdi mdi-magnify"></i>
+              </button>
+            </div>
+          </div> 
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Corporate Code</th>
+                <th scope="col">Corporate Name</th>
+                <th scope="col">Links</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="selectable-row">
+                <td>CC001</td>
+                <td>ABC Corp</td>
+                <td><i class="mdi mdi-menu-right"></i></td>
+              </tr>
+              <tr class="selectable-row">
+                <td>CC002</td>
+                <td>XYZ Ltd</td>
+                <td><i class="mdi mdi-menu-right"></i></td>
+              </tr>
+              <tr class="selectable-row">
+                <td>CC003</td>
+                <td>123 Inc</td>
+                <td><i class="mdi mdi-menu-right"></i></td>
+              </tr>
+              <!-- Add more rows as needed -->
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <button class="btn btn-link">refresh</button>
+          <div>
+            <button class="btn btn-outline-secondary"><i class="mdi mdi-menu-left"></i></button>
+            <span>1 of 8</span>
+            <button class="btn btn-outline-secondary"><i class="mdi mdi-menu-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
+
+                
+              
+        <!-- Footer -->
+        <!-- <footer class="content-footer footer bg-footer-theme">
+          <div class="container-xxl">
+            <div
+              class="footer-container d-flex align-items-center justify-content-between py-3 flex-md-row flex-column">
+              <div class="mb-2 mb-md-0">
+                ©
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                , powered <span class="text-danger"></i></span> by
+                <a href="javascript:void(0)"  class="footer-link fw-medium">ariantechsolutions</a>
+              </div>
+              <div class="d-none d-lg-inline-block">
+                <a href="javascript:void(0)" class="footer-link me-4"
+                  >License</a
+                >
+              
+
+                <a
+                  href="javascript:void(0)"
+                  class="footer-link me-4"
+                  >Documentation</a
+                >
+
+                <a href="javascript:void(0)"  class="footer-link d-none d-sm-inline-block"
+                  >Support</a
+                >
+              </div>
+            </div>
+          </div>
+        </footer> -->
+        <!-- / Footer -->
+
+          <div class="content-backdrop fade"></div>
+        <!-- </div> -->
+        <!--/ Content wrapper -->
+      <!-- </div> -->
+
+      <!--/ Layout container -->
+    <!-- </div> -->
+  <!-- </div> -->

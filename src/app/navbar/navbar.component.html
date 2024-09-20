@@ -1,0 +1,292 @@
+<div class="my-navbar">
+  <nav
+    class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme"
+    id="layout-navbar"
+  >
+    <div class="container-xxl" id="container-nav">
+      <div id="first-div">
+        <div
+          class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4"
+          id="border-color"
+        >
+          <a
+            href="javascript:void(0)"
+            routerLink="/"
+            class="app-brand-link gap-2"
+          >
+            <span class="app-brand-logo demo">
+              <span style="color: var(--bs-primary)">
+                <svg
+                  width="268"
+                  height="150"
+                  viewBox="0 0 38 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M30.0944 2.22569C29.0511 0.444187 26.7508 -0.172113 24.9566 0.849138C23.1623 1.87039 22.5536 4.14247 23.5969 5.92397L30.5368 17.7743C31.5801 19.5558 33.8804 20.1721 35.6746 19.1509C37.4689 18.1296 38.0776 15.8575 37.0343 14.076L30.0944 2.22569Z"
+                    fill="#FF5733"
+                  />
+                  <!-- Changed color to a solid red-orange -->
+                  <path
+                    d="M30.171 2.22569C29.1277 0.444187 26.8274 -0.172113 25.0332 0.849138C23.2389 1.87039 22.6302 4.14247 23.6735 5.92397L30.6134 17.7743C31.6567 19.5558 33.957 20.1721 35.7512 19.1509C37.5455 18.1296 38.1542 15.8575 37.1109 14.076L30.171 2.22569Z"
+                    fill="url(#paint0_linear)"
+                    fill-opacity="0.6"
+                  />
+
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear"
+                      x1="5.36642"
+                      y1="0.849138"
+                      x2="10.532"
+                      y2="24.104"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#FF5733" />
+                      <!-- Updated gradient colors -->
+                      <stop offset="1" stop-color="#FF5733" stop-opacity="0" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint1_linear"
+                      x1="5.19475"
+                      y1="0.849139"
+                      x2="10.3357"
+                      y2="24.1155"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop offset="0" stop-color="#33FF57" />
+                      <stop offset="1" stop-color="#33FF57" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+            </span>
+            <span class="app-brand-text demo menu-text fw-bold">ABC BANK</span>
+          </a>
+
+          <a
+            href="javascript:void(0);"
+            class="layout-menu-toggle menu-link text-large ms-auto d-xl-none"
+          >
+            <i class="mdi mdi-close align-middle"></i>
+          </a>
+        </div>
+
+        <div
+          class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none"
+        >
+          <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+            <i class="mdi mdi-menu mdi-24px"></i>
+          </a>
+        </div>
+      </div>
+
+      <div id="second-div">
+        <div
+          class="navbar-nav-right d-flex align-items-center"
+          id="navbar-collapse"
+        >
+          <ul class="navbar-nav flex-row align-items-center ms-auto">
+            <!-- Search -->
+            <li class="nav-item navbar-search-wrapper me-1 me-xl-0">
+              <a
+                class="nav-link search-toggler fw-normal"
+                href="javascript:void(0);"
+              >
+                <i class="mdi mdi-magnify mdi-24px scaleX-n1-rtl"></i>
+              </a>
+            </li>
+            <!-- /Search -->
+
+            <!-- Quick links  -->
+            <li class="nav-item me-1 me-xl-0">
+              <a
+                class="nav-link"
+                href="javascript:void(0);"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <i class="mdi mdi-view-grid-plus-outline mdi-24px"></i>
+              </a>
+            </li>
+            <!-- Quick links -->
+
+            <!-- Notification -->
+            <li class="nav-item">
+              <a
+                class=""
+                href="javascript:void(0);"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+              >
+                <i class="mdi mdi-bell-outline mdi-24px"></i>
+                <span
+                  class="position-absolute top-0 start-50 translate-middle-y badge badge-dot bg-danger mt-2 border"
+                ></span>
+              </a>
+            </li>
+            <!--/ Notification -->
+
+            <!-- User -->
+            <li class="nav-item">
+              <a class="" href="javascript:void(0);" data-bs-toggle="dropdown">
+                <div class="avatar avatar-online">
+                  <img
+                    src="assets/img/avatars/1.png"
+                    alt
+                    class="w-px-40 h-auto rounded-circle"
+                  />
+                </div>
+              </a>
+            </li>
+            <!--/ User -->
+          </ul>
+        </div>
+
+        <!-- Search Small Screens -->
+        <div
+          class="navbar-search-wrapper search-input-wrapper container-xxl d-none"
+          id="border-color"
+        >
+          <input
+            type="text"
+            class="form-control search-input border-0"
+            placeholder="Search..."
+            aria-label="Search..."
+          />
+          <i class="mdi mdi-close search-toggler cursor-pointer"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- aside  -->
+
+  <aside
+    id="layout-menu"
+    style="overflow: visible"
+    class="asside-border layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0"
+  >
+    <div class="container-xxl d-flex h-100">
+      <ul class="menu-inner">
+        <!-- Dashboards -->
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+            <div data-i18n="Setup">Setup</div>
+          </a>
+        </li>
+
+        <!-- Layouts -->
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-window-maximize"></i>
+            <div data-i18n="Direct Debit">Direct Debit</div>
+          </a>
+        </li>
+
+        <!-- Apps -->
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-apps"></i>
+            <div data-i18n="VAM">VAM</div>
+          </a>
+        </li>
+
+        <!-- Pages -->
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+            <div data-i18n="Collections">Collections</div>
+          </a>
+        </li>
+
+        <!-- Cashflow -->
+        <li
+          class="menu-item cashflow-menu"
+          (mouseenter)="toggleCashflowMenu()"
+          (mouseleave)="toggleCashflowMenu()"
+        >
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-layers-outline"></i>
+            <div class="cflow">Cashflow</div>
+          </a>
+          <ul class="menu-sub" [class.show]="isCashflowMenuOpen">
+            <li
+              class="menu-item"
+              (mouseenter)="toggleTransactionMenu()"
+              (mouseleave)="toggleTransactionMenu()"
+            >
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons mdi mdi-credit-card-outline"></i>
+                <div>Transaction</div>
+              </a>
+              <ul
+                class="menu-sub"
+                [class.show]="isTransactionMenuOpen"
+                id="dropdown-size"
+              >
+                <li
+                  class="menu-item"
+                  (mouseenter)="toggleManualForecastMenu()"
+                  (mouseleave)="toggleManualForecastMenu()"
+                >
+                  <a routerLink="/manual-four" class="menu-link">
+                    <i
+                      class="menu-icon tf-icons mdi mdi-circle-medium mdi-20px"
+                    ></i>
+                    <div>Manual Forecast Entry</div>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a routerLink="/manual-three" class="menu-link">
+                    <i
+                      class="menu-icon tf-icons mdi mdi-circle-medium mdi-20px"
+                    ></i>
+                    <div>Manual Forecast Entry 3 Column</div>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a routerLink="/listing-page" class="menu-link">
+                    <i
+                      class="menu-icon tf-icons mdi mdi-circle-medium mdi-20px"
+                    ></i>
+                    <div>Listing</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a routerLink="/summary" class="menu-link">
+                    <i
+                      class="menu-icon tf-icons mdi mdi-circle-medium mdi-20px"
+                    ></i>
+                    <div>Summary</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Forms -->
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-checkbox-marked-outline"></i>
+            <div data-i18n="LMS">LMS</div>
+          </a>
+        </li>
+
+        <!-- Tables -->
+        <li class="menu-item">
+          <a href="javascript:void(0)" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons mdi mdi-table"></i>
+            <div data-i18n="Quick links">Quick links</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+</div>

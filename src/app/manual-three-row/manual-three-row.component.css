@@ -1,0 +1,70 @@
+.cashflow-menu {
+    background: #009999; /* Background color */
+}
+
+.cashflow-menu .cflow {
+    color: #fff; /* Text color */
+}
+
+.cashflow-menu .menu-icon
+ {
+    color: #fff; /* Icon and text color */
+}
+
+  /* Custom styles for table rows */
+  .selectable-row:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+  }
+
+  /* Center modal content */
+  .modal-dialog {
+    max-width: 600px;
+    margin: 1.75rem auto;
+  }
+
+  .table-hover tbody tr:hover {
+    color: #495057;
+    background-color: #e9ecef;
+  }
+  
+/* Optional: Custom Styling for Breadcrumb */
+ /* Optional: Custom Styling for Breadcrumb */
+ .custom-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: #e9ecef; /* Adjust background color */
+    border-radius: 0.375rem;
+    
+  }
+  
+  .custom-breadcrumb .breadcrumb-item {
+    display: inline-block;
+    font-size: 0.875rem;
+
+  }
+  
+  .custom-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    padding: 0 0.5rem;
+    color: #6c757d; /* Adjust separator color */
+  }
+  
+  .custom-breadcrumb .breadcrumb-item.active {
+    color: #6c757d; /* Adjust color for active item */
+    cursor: default;
+  }
+  
+  .custom-breadcrumb .breadcrumb-item:hover {
+    text-decoration: underline;
+  }
+
+  .btn-1{ 
+    margin-right: 1em;
+    /* border: 2px solid black; */
+  }
+
+
