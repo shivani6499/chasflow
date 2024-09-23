@@ -82,7 +82,7 @@
                     [(ngModel)]="formData.forecastingAs"
                     (change)="onForecastingAsChange($event)"
                   >
-                    <option value="">Please Select</option>
+                    <option value="" hidden>Please Select</option>
                     <option value="Inward Payment">Inward Payment</option>
                     <option value="Outward Payment">Outward Payment</option>
                   </select>
@@ -98,7 +98,7 @@
                     [(ngModel)]="formData.entryType"
                     (change)="toggleValueDate()"
                   >
-                    <option value="">Please Select</option>
+                    <option value="" hidden>Please Select</option>
                     <option value="O">One Time</option>
                     <option value="R">Recurring</option>
                   </select>
@@ -144,7 +144,7 @@
                     name="mode"
                     [(ngModel)]="formData.mode"
                   >
-                    <option value="">Please Select</option>
+                    <option value=""hidden>Please Select</option>
                     <option
                       *ngFor="let option of modeOptionsList"
                       [value]="option.value"
@@ -184,7 +184,7 @@
                     [(ngModel)]="formData.accountType"
                     (change)="onAccountTypeChange()"
                   >
-                    <option value="">Please Select</option>
+                    <option value=""hidden>Please Select</option>
                     <option value="Internal Account">Internal Account</option>
                     <option value="External Account">External Account</option>
                   </select>
@@ -202,7 +202,7 @@
                     [(ngModel)]="formData.accountNumber"
                     [disabled]="formData.corporateCode === ''"
                   >
-                    <option value="">Please Select</option>
+                    <option value=""hidden>Please Select</option>
                     <option
                       *ngFor="let account of accountTypes"
                       [value]="account.accountNumber"
@@ -306,14 +306,10 @@
                 </div>
               </div>
 
-              <div
-                class="col-md-3"
-                id="recurringFieldsPattern"
-                style="display: none"
-              >
+              <div class="col-md-3" id="recurringFieldsPattern" style="display: none">
                 <div class="mb-3">
-                  <label for="recurringPattern" class="form-label"
-                    >Recurring Pattern<span class="requiredF">*</span></label
+                  <label for="recurringPattern" class="form-label">
+                    Recurring Pattern<span class="requiredF">*</span></label
                   >
                   <select
                     class="form-select"
@@ -321,14 +317,14 @@
                     name="recurrencePattern"
                     [(ngModel)]="formData.recurrencePattern"
                   >
-                    <option selected value="">Please Select</option>
-                    <option>Daily</option>
-                    <option>Weekly</option>
-                    <option>Monthly</option>
+                    <option selected value=""hidden>Please Select</option>
+                    <option value="D">Daily</option>
+                    <option value="W">Weekly</option>
+                    <option value="M">Monthly</option>
                   </select>
-                  <!-- Add other patterns as needed -->
                 </div>
               </div>
+              
 
               <!-- Buttons -->
               <!-- Submit Button for  -->
@@ -348,6 +344,7 @@
                   Update
                 </button>
               </div>
+              
             </div>
           </form>
           <div class="modal-dialog modal-lg modal-dialog-centered">

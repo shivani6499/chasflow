@@ -274,39 +274,45 @@ export class ManualFourRowComponent implements OnInit, AfterViewInit {
   }
 
   onSearchClick(): void {
+    // Check if corporate type (corporateCode or corporateName) is selected
+    if (!this.corporateTypeTxt) {
+      this.showError('Please select Corporate Code or Corporate Name.');
+      return;
+    }
+  
+    // Check if search text is entered
+    if (!this.searchbyTxt || this.searchbyTxt.trim() === '') {
+      this.showError('Please enter data to search.');
+      return;
+    }
+  
+    // Set the search URL based on the selected corporate type
     let url = baseUrl + 'corporate/corporate-code/' + this.searchbyTxt;
-
+  
     if (this.corporateTypeTxt === 'corporateName') {
       url = baseUrl + 'corporate/corporate-name/' + this.searchbyTxt;
     }
-
+  
+    // Make the HTTP request to search
     this.http.get(url).subscribe(
       (result: any) => {
-
         if (result && result.data && result.data.content) {
           this.filteredUsers = result.data.content;
         } else {
-
-          this.showError(
-            'No results found for the provided corporate code or name.'
-          );
+          this.showError('No results found for the provided corporate code or name.');
         }
       },
       (error) => {
-
         if (error.status === 404) {
-          this.showError(
-            'Corporate code or name not found. Please enter a valid one.'
-          );
+          this.showError('Corporate code or name not found. Please enter a valid one.');
         } else {
-          this.showError(
-            'An error occurred during the search. Please try again.'
-          );
+          this.showError('An error occurred during the search. Please try again.');
         }
         console.error('Search error:', error);
       }
     );
   }
+  
 
   showError(message: string): void {
     alert(message);

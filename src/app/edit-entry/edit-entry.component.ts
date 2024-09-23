@@ -16,7 +16,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { baseUrl } from '../utils/api';
 import { ActivatedRoute } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-edit-entry',
   standalone: true,
@@ -121,8 +122,14 @@ export class EditEntryComponent implements OnInit, AfterViewInit {
     private cdr: ChangeDetectorRef,
     private fb: FormBuilder,
     private alertService: AlertService,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private router: Router,
+    private location: Location,
+  ) {
+    this.route.params.subscribe(params => {
+      this.id = +params['id']; // Use '+' to convert to a number
+  });
+  }
 
   formData = {
     corporateCode: '',
@@ -420,59 +427,165 @@ export class EditEntryComponent implements OnInit, AfterViewInit {
   }
   onSearchInput(): void { 
   }
-
+  fetchData(id: number): void {
+    this.http
+      .get<any>(`http://167.172.220.75:8084/CashflowForecastingApplication/api/forecasts/${id}`)
+      .subscribe({
+        next: (response) => {
+          if (response.code === 200 && response.status === 'success') {
+            // Set formData values based on the response data
+            this.formData = {
+              corporateCode: response.data.corporateCode || '',
+              corporateName: response.data.corporateName || '',
+              forecastingAs: response.data.forecastingAs || '',
+              forecastCurrency: response.data.currency || 'INR',
+              entryType: response.data.entryType || '',  // Entry type
+              narration: response.data.narration || '',
+              description: response.data.description || '',
+              mode: response.data.mode || '',
+              beneficiaryPayers: response.data.beneficiaryPayers || '',
+              accountType: response.data.accountType || '',
+              accountNumber: response.data.accountNumber || '',
+              forecastedAmount: response.data.forecastedAmount || '',
+              lockRecord: response.data.lockRecord || false,
+              valueDate: response.data.valueDate || '',
+              recurringFrom: response.data.recurringFrom || '',
+              recurringTo: response.data.recurringTo || '',
+              recurrencePattern: response.data.recurrencePattern || '',
+            };
+            
+            // Handle specific actions based on the data
+            if (this.formData.forecastingAs === 'Inward Payment') {
+              this.modeOptionsList = this.modeOptions.inwardPayment;
+            } else if (this.formData.forecastingAs === 'Outward Payment') {
+              this.modeOptionsList = this.modeOptions.outwardPayment;
+            }
+  
+            // Perform additional actions (like toggles or dependent fields)
+            this.corporateCodeAllDetail();
+            setTimeout(() => {
+              if (this.formData.accountType !== '') {
+                this.onAccountTypeChange();
+              }
+            }, 3000);
+            this.toggleValueDate();
+          } else {
+            console.error('Failed to fetch data', response);
+          }
+        },
+        error: (error) => {
+          console.error('HTTP Error', error);
+        },
+      });
+  }
+  
+  
+  updateData(id: number): void {
+    const updatedData = {
+      corporateCode: this.formData.corporateCode,
+      corporateName: this.formData.corporateName,
+      forecastingAs: this.formData.forecastingAs,
+      currency: this.formData.forecastCurrency,
+      entryType: this.formData.entryType,
+      narration: this.formData.narration,
+      description: this.formData.description,
+      mode: this.formData.mode,
+      beneficiaryPayers: this.formData.beneficiaryPayers,
+      accountType: this.formData.accountType,
+      accountNumber: this.formData.accountNumber,
+      forecastedAmount: this.formData.forecastedAmount,
+      lockRecord: this.formData.lockRecord,
+      valueDate: this.formData.valueDate,
+      recurringFrom: this.formData.recurringFrom,
+      recurringTo: this.formData.recurringTo,
+      recurrencePattern: this.formData.recurrencePattern,
+    };
+  console.log('shivani')
+    this.http
+      .put<any>(
+        `http://167.172.220.75:8084/CashflowForecastingApplication/api/forecasts/${id}`,
+        updatedData
+      )
+      .subscribe({
+        next: (response) => {
+          if (response.code === 200 && response.status === 'success') {
+            console.log('Update successful:', response);
+      
+            Object.assign(this.formData, updatedData);
+           
+          } else {
+            console.error('Failed to update data', response);
+          }
+        },
+        error: (error) => {
+          console.error('HTTP Error', error);
+        },
+      });
+  }
+  
+  id!: number;
   submitForm(): void {
-    // Check if all required fields have values
+    // First, check if all required fields have values
     const missingFields = this.checkForMissingFields();
 
     if (missingFields.length > 0) {
-      // If there are missing fields, display a warning message
-      this.alertService.showAlert(
-        'Missing Field',
-        `The following fields are missing: ${missingFields.join(', ')}`
-      );
+        // If there are missing fields, display a warning message
+        this.alertService.showAlert(
+            'Missing Field',
+            `The following fields are missing: ${missingFields.join(', ')}`
+        );
     } else {
-      // If all required fields are filled, submit the form 
+        // If all required fields are filled, proceed with the update
+        this.updateData(this.id); // Update the data
 
-      this.http
-        .post(baseUrl + 'forecasts', this.formData)
-        .pipe(
-          catchError((error) => {
-            console.error('Error occurred while saving the forecast:', error);
-            this.alertService.showAlert(
-              'Error',
-              'Error occurred while saving the forecast.'
-            );
-            return throwError(error);
-          })
-        )
-        .subscribe((response) => { 
-          this.alertService.showAlert('Success', 'Update successfully!');
-          this.formData = {
-            corporateCode: '',
-            corporateName: '',
-            forecastingAs: '',
-            forecastCurrency: 'INR',
-            entryType: '',
-            narration: '',
-            description: '',
-            mode: '',
-            beneficiaryPayers: '',
-            accountType: '',
-            accountNumber: '',
-            forecastedAmount: '',
-            lockRecord: false,
-            valueDate: '',
-            recurringFrom: '',
-            recurringTo: '',
-            recurrencePattern: '',
-          };
-          // Optionally, you can reset the form or provide feedback to the user here
-        });
+        // Optionally, subscribe to the updateData observable and handle the success or failure
+        this.http
+            .put<any>(
+                `http://167.172.220.75:8084/CashflowForecastingApplication/api/forecasts/${this.id}`,
+                this.formData
+            )
+            .subscribe({
+                next: (response) => {
+                    if (response.code === 200 && response.status === 'success') {
+                        this.alertService.showAlert('Success', 'Update successful!');
+
+                        // Reset form data
+                        this.formData = {
+                            corporateCode: '',
+                            corporateName: '',
+                            forecastingAs: '',
+                            forecastCurrency: 'INR',
+                            entryType: '',
+                            narration: '',
+                            description: '',
+                            mode: '',
+                            beneficiaryPayers: '',
+                            accountType: '',
+                            accountNumber: '',
+                            forecastedAmount: '',
+                            lockRecord: false,
+                            valueDate: '',
+                            recurringFrom: '',
+                            recurringTo: '',
+                            recurrencePattern: '',
+                        };
+                        this.router.navigate(['/listing-page']);
+                    } else {
+                        console.error('Failed to update data', response);
+                        this.alertService.showAlert('Error', 'Failed to update data');
+                    }
+                },
+                error: (error) => {
+                    console.error('HTTP Error', error);
+                    this.alertService.showAlert('Error', 'Error occurred while updating the forecast.');
+                },
+            });
     }
-  }
+}
 
   cancel() {
+    // this.router.navigate(['/listing-page']);
+    this.location.back();
     this.formData = {
       corporateCode: '',
       corporateName: '',
@@ -561,86 +674,8 @@ export class EditEntryComponent implements OnInit, AfterViewInit {
       );
   }
 
-  fetchData(id: number): void {
-    this.http
-      .get<any>(`http://167.172.220.75:8084/CashflowForecastingApplication/api/forecasts/${id}`)
-      .subscribe({
-        next: (response) => {
-          if (response.code === 200 && response.status === 'success') {
+ // Fetch existing data by ID
 
-            console.log('Entry Type:', this.formData.entryType);
-console.log('Recurring From:', this.formData.recurringFrom);
-console.log('Recurring To:', this.formData.recurringTo);
-console.log('Recurrence Pattern:', this.formData.recurrencePattern);
 
-            console.log(this.recurrencePattern,"recurrence")
-            // Set formData values
-            this.formData = {
-              corporateCode: response.data.corporateCode || '',
-              corporateName: response.data.corporateName || '',
-              forecastingAs: response.data.forecastingAs || '',
-              forecastCurrency: response.data.currency || 'INR',
-              entryType: response.data.entryType || '',  // Entry type
-              narration: response.data.narration || '',
-              description: response.data.description || '',
-              mode: response.data.mode || '',
-              beneficiaryPayers: response.data.beneficiaryPayers || '',
-              accountType: response.data.accountType || '',
-              accountNumber: response.data.accountNumber || '',
-              forecastedAmount: response.data.forecastedAmount || '',
-              lockRecord: response.data.lockRecord || false,
-              valueDate: response.data.valueDate || '',
-              recurringFrom: response.data.recurringFrom || '',
-              recurringTo: response.data.recurringTo || '',
-              recurrencePattern: response.data.recurrencePattern || '',
-            };
-  
-            // Check the forecastingAs type and set modeOptions accordingly
-            if (this.formData.forecastingAs === 'Inward Payment') {
-              this.modeOptionsList = this.modeOptions.inwardPayment;
-            } else if (this.formData.forecastingAs === 'Outward Payment') {
-              this.modeOptionsList = this.modeOptions.outwardPayment;
-            }
-  
-            // Perform additional actions after data is set
-            this.corporateCodeAllDetail();
-            
-            // Call to change based on accountType
-            setTimeout(() => {
-              if (this.formData.accountType !== '') {
-                this.onAccountTypeChange();
-              }
-            }, 2000);
-  
-            // Ensure toggleValueDate is called after setting the entryType
-            this.toggleValueDate();
-          } else {
-            console.error('Failed to fetch data', response);
-          }
-        },
-        error: (error) => {
-          console.error('HTTP Error', error);
-        },
-      });
-  }
-  
-  updateData(id: number, data: any): void {
-    this.http
-      .put<any>(
-        `http://167.172.220.75:8084/CashflowForecastingApplication/api/forecasts/${id}`,
-        data
-      )
-      .subscribe({
-        next: (response) => {
-          if (response.code === 200 && response.status === 'success') {
-            console.log('Update successful:', response);
-          } else {
-            console.error('Failed to update data', response);
-          }
-        },
-        error: (error) => {
-          console.error('HTTP Error', error);
-        },
-      });
-  }
+
 }

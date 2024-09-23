@@ -71,3 +71,52 @@
 .form-check-input {
   margin-top: 2px;
 }
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+
+.form{
+ display: -webkit-flex;
+ display: -moz-flex;
+ display: -ms-flex;
+ display: -o-flex;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ position: relative;
+}
+.wrapper{
+  width: 400px;
+  height: 35px;
+  border-bottom: 1px solid black;
+  position: relative;
+}
+.wrapper input{
+  background:transparent;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  padding-left: 2px;
+  padding-top: 5px;
+  color: black;
+  background-color: rgb(252, 236, 236);
+  font-size: 16px;
+}
+.wrapper label{
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  color: black;
+  text-transform: capitalize;
+  font-size: 16px;
+  transition: top 0.3s ease;
+}
+.wrapper input:focus ~ label,
+.wrapper input:valid ~ label
+{
+top: -9px;
+background-color: transparent;
+pointer-events: none;
+font-size: 14px;
+} */
