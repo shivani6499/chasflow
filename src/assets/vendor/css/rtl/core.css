@@ -129,7 +129,7 @@ h1,
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1.1;
-  color: #636578;
+  color: #131314;
 }
 
 h1,
@@ -6587,7 +6587,7 @@ input:-internal-autofill-selected {
 }
 
 .bg-label-secondary {
-  background-color: #e9ebee !important;
+  /* background-color: #e9ebee !important; */
   color: #6d788d !important;
 }
 

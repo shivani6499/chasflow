@@ -6,6 +6,65 @@
   width: 100%; /* Full width of the container */
 }
 
+
+.account-details {
+  display: flex;
+  margin-top: 10px;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f3f3f3;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.account-number, .balance-details, .view-details {
+  display: flex;
+  align-items: center;
+}
+
+.account-number {
+  flex-grow: 1;
+}
+
+.account-id {
+  font-size: 14px;
+  color: #999;
+  margin-left: 140px;
+}
+
+.balance-details {
+  flex-grow: 1;
+  justify-content: flex-start;
+gap: 45px;
+}
+
+.balance-details span {
+  font-size: 14px;
+  color: #666;
+  margin-left: 20px;
+}
+
+.view-details {
+  flex-grow: 0;
+}
+
+.view-details-link {
+  color: #009999;
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.dropdown-arrow {
+  margin-left: 10px;
+  font-size: 20px;
+  color: #009999;
+  cursor: pointer;
+}
+
+
 canvas {
   flex-shrink: 0; /* Prevent the canvas from shrinking */
   width: 50%; /* Adjust the width of the canvas as needed */
@@ -150,7 +209,7 @@ body {
 .container-xxl .summary,
 .container-xxl .card-container {
   display: flex;
-  height: 178px;
+  height: 200px;
   flex-direction: column;
   justify-content: stretch;
 }
@@ -723,9 +782,25 @@ hr.thin-line {
   flex: 1;
   overflow: auto; /* Add scrollbar if content overflows */
 }
+
+/* Customize scrollbar */
+.card-body::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background-color: #999; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
 .card-container {
   height: 100%;
 }
+
 
 :root {
   --primary-color: #009999;
@@ -1185,4 +1260,10 @@ a:hover {
 
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
+}
+
+
+#hello{
+  display: flex;
+  
 }

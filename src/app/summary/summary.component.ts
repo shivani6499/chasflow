@@ -198,16 +198,23 @@ export class SummaryComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const canvas1 = document.getElementById('donutChart1') as HTMLCanvasElement;
     const ctx1 = canvas1?.getContext('2d');
+    
     if (ctx1) {
       new Chart(ctx1, {
         type: 'doughnut',
         data: {
-          labels: ['cheque collection', 'cash collection', 'poc collection'], // Update with actual labels
+          labels: [
+            'Cheque Collection        300 AED', 
+            'Cash Collection            50  AED', 
+            'POC Collection          100 AED', 
+            'E mandate             200 AED', 
+            'Invoice Financing    150 AED'
+          ], 
           datasets: [
             {
-              label: 'My Dataset', // General label for the dataset
-              data: [300, 50, 100], // Data for each segment
-              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'], // Colors for each segment
+              label: 'My Dataset',
+              data: [300, 50, 100, 200, 150],
+              backgroundColor: ['#E06C83', '#30417E', '#D59524', '#52BEA7', '#B9DF4B'],
             },
           ],
         },
@@ -219,8 +226,11 @@ export class SummaryComponent implements AfterViewInit {
             legend: {
               position: 'right',
               labels: {
-                boxWidth: 12,
-                padding: 10,
+                boxWidth: 10,
+                padding: 8,
+                font: {
+                  size: 8,
+                },
               },
             },
             tooltip: {
@@ -228,28 +238,48 @@ export class SummaryComponent implements AfterViewInit {
                 label: function (tooltipItem) {
                   const datasetLabel = tooltipItem.dataset.label || '';
                   const dataLabel = tooltipItem.label || '';
-                  const value = tooltipItem.raw;
-                  return `${datasetLabel}: ${dataLabel} (${value})`;
+                  const amount = tooltipItem.raw;
+    
+                  // Increase space before the amount
+                  return [
+                    `${datasetLabel}: ${dataLabel}`,
+                    `    <b>${amount} AED</b>`, // Additional spaces added here
+                  ];
                 },
+              },
+              titleFont: {
+                size: 10,
+              },
+              bodyFont: {
+                size: 10,
               },
             },
           },
         },
       });
     }
-
+    
+    
+    
+    
     const canvas2 = document.getElementById('donutChart2') as HTMLCanvasElement;
     const ctx2 = canvas2?.getContext('2d');
     if (ctx2) {
       new Chart(ctx2, {
         type: 'doughnut',
         data: {
-          labels: ['Future collection', 'Payment by sip', 'cash payment'],
+          labels: [
+            'Future Payment 300 AED', 
+            'Payment by SI 50 AED', 
+            'Bill Payment Schedule 100 AED', 
+            'Tax Payment Schedule 200 AED', 
+            'Loan EMIs 150 AED'
+          ], 
           datasets: [
             {
-              label: 'Cash Flow Distribution',
-              data: [200, 150, 250],
-              backgroundColor: ['#4CAF50', '#9C27B0', '#FF9800'],
+              label: 'My Dataset',
+              data: [300, 50, 100, 200, 150],
+              backgroundColor: ['#E06C83', '#30417E', '#D59524', '#52BEA7', '#B9DF4B'],
             },
           ],
         },
@@ -261,8 +291,12 @@ export class SummaryComponent implements AfterViewInit {
             legend: {
               position: 'right',
               labels: {
-                boxWidth: 12,
-                padding: 10,
+                boxWidth: 8,
+                padding: 8,
+                font: {
+                  size: 8, // Increased font size for better visibility
+                  weight: 'bold', // Make label text bold
+                },
               },
             },
             tooltip: {
@@ -270,14 +304,26 @@ export class SummaryComponent implements AfterViewInit {
                 label: function (tooltipItem) {
                   const datasetLabel = tooltipItem.dataset.label || '';
                   const dataLabel = tooltipItem.label || '';
-                  const value = tooltipItem.raw;
-                  return `${datasetLabel}: ${dataLabel} (${value})`;
+                  const amount = tooltipItem.raw;
+    
+                  // Return formatted tooltip with bold amount
+                  return [
+                    `${datasetLabel}: ${dataLabel}`,
+                    `<b style="color: #000;">${amount} AED</b>`, // Bold amount in tooltip
+                  ];
                 },
+              },
+              titleFont: {
+                size: 8,
+              },
+              bodyFont: {
+                size: 8,
+                weight: 'bold', // Make tooltip body bold
               },
             },
           },
         },
       });
     }
-  }
-}
+    
+}}
