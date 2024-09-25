@@ -1,6 +1,6 @@
 .summury-container {
   width: 100vw;
-  height: inherit;
+  height: 300vh;
 }
 .navigator {
   height: auto;
@@ -49,7 +49,7 @@
 }
 
 .container {
-  height: 160px;
+  height: auto;
   width: 95vw;
   margin: 0;
   padding: 0;
@@ -65,7 +65,7 @@
   box-shadow: rgba(0, 0, 0, 0.24) 4px 1px 12px;
 }
 .container .section {
-  height: 100%;
+  height: 160px;
   width: 280px;
   display: flex;
   flex-direction: column;
@@ -137,7 +137,7 @@
 .container .box1,
 .box2,
 .box3 {
-  height: 85%;
+  height: 160px;
   flex-basis: 200px;
   flex-grow: 1;
   margin-top: 12px;
@@ -147,7 +147,7 @@
 }
 
 .container .box4 {
-  height: 85%;
+  height: 160px;
   flex-basis: 350px;
   margin-top: 12px;
 
@@ -210,177 +210,6 @@
 }
 
 .container .box4 .inner-box .bottom-box {
-  height: 150px;
-  padding: 0 10px;
-  width: 400px;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
-
-.container-forecast-period {
-  height: 160px;
-  width: 95vw;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  margin: 0 auto;
-  justify-content: start;
-  gap: 1rem;
-  flex-wrap: wrap;
-  max-width: 95%;
-  border-radius: 5px;
-  margin-top: 20px;
-    align-items: stretch;
-  font-family: sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.24) 4px 1px 12px;
-}
-.container-forecast-period .section {
-  height: 100%;
-  width: 280px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  flex-grow: 1;
-  border: 2px solid #02b29d;
-}
-
-.container-forecast-period .section .top-section {
-  height: 50%;
-  width: 90%;
-  position: relative;
-  border-bottom: 2px solid #02b29d;
-}
-.container-forecast-period .section .top-section .left {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: black;
-  position: absolute;
-  bottom: 6px;
-}
-.container-forecast-period .section .top-section .right {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: grey;
-  position: absolute;
-  display: flex;
-  top: 12px;
-  right: 2px;
-}
-
-.container-forecast-period .section .top-section .right .currency-selector {
-  display: flex;
-  gap: 2px;
-  justify-content: baseline;
-}
-.container-forecast-period .section .top-section .right .currency-selector img {
-  height: 22px;
-  width: 33px;
-}
-.container-forecast-period .section .top-section .right .currency-selector select {
-  outline: none;
-  border: none;
-  color: black;
-  font-weight: 500;
-}
-.container-forecast-period .section .bottom-section {
-  height: 50%;
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-
-.container-forecast-period .section .bottom-section .left .id-string {
-  margin-top: -10px;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.container-forecast-period .section .bottom-section .right .id-string {
-  margin-top: -10px;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.container-forecast-period .box-container1,
-.box-container2,
-.box-container3{
-  height: 85%;
-  flex-basis: 200px;
-  flex-grow: 1;
-  margin-top: 12px;
-  position: relative;
-  border: 2px solid red;
-  background-color: rgba(241, 239, 235, 0.726);
-}
-
-.container-forecast-period .box-container4 {
-  height: 85%;
-  flex-basis: 350px;
-  margin-top: 12px;
-border: 2px solid red;
-  position: relative;
-  margin-right: 15px;
-  background-color: rgba(241, 239, 235, 0.726);
-}
-
-.container-forecast-period .box-data .inner-box {
-  width: 100%;
-  height: inherit;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.container-forecast-period .box-data .inner-box .heading {
-  color: black;
-  font-size: 0.8rem;
-  font-weight: 600;
-  position: absolute;
-  top: 15px;
-}
-
-.container-forecast-period .box-data .inner-box .data {
-  color: black;
-  font-size: 1rem;
-  font-weight: 600;
-}
-.container-forecast-period .box-data .inner-box .bottom-box {
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-}
-.container-forecast-period .box-data .inner-box .inner-heading {
-  color: black;
-  font-size: 0.7rem;
-  font-weight: 600;
-}
-.container-forecast-period .box-data .inner-box .lower-text {
-  display: flex;
-  gap: 4px;
-}
-.container-forecast-period .box-data .inner-box .lower-text img {
-  height: 12px;
-  width: 18px;
-  margin-top: 3px;
-}
-.container-forecast-period .box-data .inner-box .lower-text p {
-  font-size: 0.8rem;
-}
-.container-forecast-period .box-data .inner-box .heading-insight {
-  color: black;
-  font-size: 0.8rem;
-  font-weight: 600;
-  position: absolute;
-  top: 15px;
-  left: 10px;
-}
-
-.container-forecast-period .box4 .inner-box .bottom-box {
   height: 150px;
   padding: 0 10px;
   width: 400px;
