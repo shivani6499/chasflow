@@ -291,10 +291,10 @@ export class SummaryComponent implements AfterViewInit {
             legend: {
               position: 'right',
               labels: {
-                boxWidth: 8,
+                boxWidth: 10,
                 padding: 8,
                 font: {
-                  size: 8, // Increased font size for better visibility
+                  size: 10, // Increased font size for better visibility
                   weight: 'bold', // Make label text bold
                 },
               },
@@ -314,10 +314,10 @@ export class SummaryComponent implements AfterViewInit {
                 },
               },
               titleFont: {
-                size: 8,
+                size: 10,
               },
               bodyFont: {
-                size: 8,
+                size: 10,
                 weight: 'bold', // Make tooltip body bold
               },
             },
@@ -325,5 +325,5 @@ export class SummaryComponent implements AfterViewInit {
         },
       });
     }
-    
-}}
+  }
+}
