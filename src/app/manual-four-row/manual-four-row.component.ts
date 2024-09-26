@@ -73,12 +73,28 @@ export class ManualFourRowComponent implements OnInit, AfterViewInit {
     if (fromDateValue && toDateValue) {
       const fromDate = new Date(fromDateValue);
       const toDate = new Date(toDateValue);
+  
+      // Check if the "Recurring From" date is after the "Recurring To" date
+      if (fromDate > toDate) {
+        this.alertService.showAlert(
+          'Error',
+          'The "Recurring From" date cannot be after the "Recurring To" date. Please select valid dates.'
+        );
+        this.formData.recurringTo = '';
+        this.recurringOptions = [];
+        return;
+      }
+  
       const timeDiff = toDate.getTime() - fromDate.getTime();
       const dayDiff = timeDiff / (1000 * 60 * 60 * 24);
       const maxDays = 180;
   
+      // Check if the selected date range exceeds 6 months
       if (dayDiff > maxDays) {
-        alert('The selected date range exceeds 6 months. Please choose a valid range.');
+        this.alertService.showAlert(
+          'Error',
+          'The selected date range exceeds 6 months. Please choose a valid range.'
+        );
         this.formData.recurringTo = '';
         this.recurringOptions = [];
         return;
@@ -102,6 +118,8 @@ export class ManualFourRowComponent implements OnInit, AfterViewInit {
       this.recurringOptions = [];
     }
   }
+  
+  
   
  onKeyupSearch(event: KeyboardEvent) {
     if (!this.searchbyTxt || this.searchbyTxt.trim() === '') {

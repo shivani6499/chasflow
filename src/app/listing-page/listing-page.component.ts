@@ -53,26 +53,125 @@ export class ListingPageComponent implements OnInit {
   }
 
   searchParam = '';
+  onInputChange() {
+    if (!this.searchValue) {
+      this.refreshResults(); // Automatically refresh when input is cleared
+    }
+  }
+  
+  refreshResults() {
+    console.log('Refreshing results...');
+    // Clear the search or refresh the data (replace with actual logic)
+    this.results = []; 
+    // Example: Fetch all results again or reset the table
+    // this.results = this.yourService.getAllResults();
+  }
+  // search() {
+  //   this.loading = true;
+  //   this.error = null;
+
+  //   if (!this.currentStatus) {
+  //     this.alertService.showAlert(
+  //       'Error',
+  //       'Please select any one Of this reject, pending, or review first'
+  //     ); 
+  //     this.loading = false;
+  //     return;
+  //   }
+ 
+  //   if (!this.searchValue || this.searchValue.trim() === '') {
+  //     this.alertService.showAlert('Error', 'Enter the search value first');
+  //     this.loading = false;
+  //     return; 
+  //   }
+  //   this.loading = true; 
+
+  //   let apiUrl = '';
+  //   switch (this.selectedOption * 1) {
+  //     case 0:
+  //       this.searchParam = 'referenceNo';
+  //       break;
+  //     case 1:
+  //       this.searchParam = 'corporateCode';
+  //       break;
+  //     case 2:
+  //       this.searchParam = 'corporateName';
+  //       break;
+  //     case 3:
+  //       this.searchParam = 'forecastingAs';
+  //       break;
+  //     case 4:
+  //       this.searchParam = 'entryType';
+  //       break;
+  //     default:
+  //       this.searchParam = 'referenceNo';
+  //   } 
+  //   if (this.currentStatus === 'rejected') {
+  //     apiUrl =
+  //       baseUrl +
+  //       'rejected/search?' +
+  //       this.searchParam +
+  //       '=' +
+  //       this.searchValue;
+  //   }
+  //   if (this.currentStatus === 'pending') { 
+  //     apiUrl =
+  //       baseUrl +
+  //       'pending-list/search?' +
+  //       this.searchParam +
+  //       '=' +
+  //       this.searchValue;
+  //   }
+  //   if (this.currentStatus === 'review') {
+  //     apiUrl =
+  //       baseUrl +
+  //       'review-list/search?' +
+  //       this.searchParam +
+  //       '=' +
+  //       this.searchValue;
+  //   }
+  //   apiUrl + '&page=0&size=2'; 
+  //   this.http.get(apiUrl).subscribe(
+  //     (response: any) => {
+  //       this.loading = false; 
+  //       if (response.code === 200 && response.data && response.data.content) {
+  //         this.results = response.data.content;
+  //       } else {
+  //         this.alertService.showAlert('Error', 'Data not found'); 
+  //         this.results = [];
+  //       }
+  //     },
+  //     (error) => {
+  //       this.loading = false; 
+  //       this.results = [];
+  //     }
+  //   );
+  // }
+
+  //
+
   search() {
     this.loading = true;
     this.error = null;
-
+  
+    // Check if a status is selected
     if (!this.currentStatus) {
       this.alertService.showAlert(
         'Error',
-        'Please select any one Of this reject, pending, or review first'
-      ); 
+        'Please select either Reject, Pending, or Review first'
+      );
       this.loading = false;
       return;
     }
- 
+  
+    // Validate search input
     if (!this.searchValue || this.searchValue.trim() === '') {
-      this.alertService.showAlert('Error', 'Enter the search value first');
+      this.alertService.showAlert('Error', 'Please enter a search value first');
       this.loading = false;
-      return; 
+      return;
     }
-    this.loading = true; 
-
+  
+    // Map the search parameter based on selected option
     let apiUrl = '';
     switch (this.selectedOption * 1) {
       case 0:
@@ -92,51 +191,65 @@ export class ListingPageComponent implements OnInit {
         break;
       default:
         this.searchParam = 'referenceNo';
-    } 
+    }
+  
+    // Construct API URL based on status
     if (this.currentStatus === 'rejected') {
-      apiUrl =
-        baseUrl +
-        'rejected/search?' +
-        this.searchParam +
-        '=' +
-        this.searchValue;
+      apiUrl = `${baseUrl}rejected/search?${this.searchParam}=${this.searchValue}`;
+    } else if (this.currentStatus === 'pending') {
+      apiUrl = `${baseUrl}pending-list/search?${this.searchParam}=${this.searchValue}`;
+    } else if (this.currentStatus === 'review') {
+      apiUrl = `${baseUrl}review-list/search?${this.searchParam}=${this.searchValue}`;
     }
-    if (this.currentStatus === 'pending') { 
-      apiUrl =
-        baseUrl +
-        'pending-list/search?' +
-        this.searchParam +
-        '=' +
-        this.searchValue;
-    }
-    if (this.currentStatus === 'review') {
-      apiUrl =
-        baseUrl +
-        'review-list/search?' +
-        this.searchParam +
-        '=' +
-        this.searchValue;
-    }
-    apiUrl + '&page=0&size=2'; 
-    this.http.get(apiUrl).subscribe(
+  
+    apiUrl += '&page=0&size=2';
+  
+    // Perform API call with full HTTP response
+    this.http.get(apiUrl, { observe: 'response' }).subscribe(
       (response: any) => {
-        this.loading = false; 
-        if (response.code === 200 && response.data && response.data.content) {
-          this.results = response.data.content;
-        } else {
-          this.alertService.showAlert('Error', 'Data not found'); 
+        this.loading = false;
+  
+        // Handle 204 No Content response explicitly
+        if (response.status === 204) {
+          this.alertService.showAlert(
+            'No Results',
+            'The search was successful, but no data was found for the entered criteria.'
+          );
+          this.results = [];
+        } 
+        // Handle 200 success response with data
+        else if (response.status === 200 && response.body && response.body.data && response.body.data.content.length > 0) {
+          this.results = response.body.data.content;
+        } 
+        // Handle case where no data is found despite 200 status
+        else {
+          this.alertService.showAlert(
+            'No Results',
+            `No matching data found for "${this.searchValue}". Please try again with different criteria.`
+          );
           this.results = [];
         }
       },
       (error) => {
-        this.loading = false; 
+        this.loading = false;
+  
+        // Handle other errors
+        if (error.status === 204) {
+          this.alertService.showAlert(
+            'No Results',
+            'The search was successful, but no data was found for the entered criteria.'
+          );
+        } else {
+          this.alertService.showAlert('Error', 'An error occurred while fetching the data.');
+        }
         this.results = [];
       }
     );
   }
-
-  //
-
+  
+  
+  
+  
   navigateToEdit(id: number) { 
     this.router.navigate(['/edit-entry', id]); 
   }

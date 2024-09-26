@@ -1,6 +1,11 @@
 .summury-container {
   width: 100vw;
-  height: 300vh;
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+body {
+  font-family: sans-serif;
 }
 .navigator {
   height: auto;
@@ -48,24 +53,39 @@
   color: rgb(70, 69, 69);
 }
 
-.container {
+.main-container {
   height: auto;
   width: 95vw;
   margin: 0;
   padding: 0;
   display: flex;
   margin: 0 auto;
-  justify-content: start;
-  gap: 1rem;
   flex-wrap: wrap;
   max-width: 95%;
   border-radius: 5px;
-    align-items: stretch;
+  align-items: stretch;
+  font-family: sans-serif;
+}
+
+.container {
+  height: inherit;
+  width: 70vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  margin: 0 auto;
+  justify-content: start;
+  gap: 1rem;
+  padding: 10px;
+  flex-wrap: wrap;
+  max-width: 100%;
+  border-radius: 5px;
+  align-items: stretch;
   font-family: sans-serif;
   box-shadow: rgba(0, 0, 0, 0.24) 4px 1px 12px;
 }
-.container .section {
-  height: 160px;
+.main-container .section {
+  height: 180px;
   width: 280px;
   display: flex;
   flex-direction: column;
@@ -73,48 +93,49 @@
   align-items: center;
   border-radius: 5px;
   flex-grow: 1;
+  position: relative;
   border: 2px solid #02b29d;
 }
 
-.container .section .top-section {
+.main-container .section .top-section {
   height: 50%;
   width: 90%;
   position: relative;
   border-bottom: 2px solid #02b29d;
 }
-.container .section .top-section .left {
+.main-container .section .top-section .left {
   font-size: 1.2rem;
   font-weight: 600;
   color: black;
   position: absolute;
   bottom: 6px;
 }
-.container .section .top-section .right {
+.main-container .section .top-section .right {
   font-size: 0.9rem;
   font-weight: 500;
   color: grey;
   position: absolute;
-  display: flex;
+
   top: 12px;
   right: 2px;
 }
 
-.container .section .top-section .right .currency-selector {
+.main-container .section .top-section .right .currency-selector {
   display: flex;
   gap: 2px;
   justify-content: baseline;
 }
-.container .section .top-section .right .currency-selector img {
+.main-container .section .top-section .right .currency-selector img {
   height: 22px;
   width: 33px;
 }
-.container .section .top-section .right .currency-selector select {
+.main-container .section .top-section .right .currency-selector select {
   outline: none;
   border: none;
   color: black;
   font-weight: 500;
 }
-.container .section .bottom-section {
+.main-container .section .bottom-section {
   height: 50%;
   width: 90%;
   display: flex;
@@ -122,13 +143,13 @@
   position: relative;
 }
 
-.container .section .bottom-section .left .id-string {
+.main-container .section .bottom-section .left .id-string {
   margin-top: -10px;
   font-weight: 600;
   font-size: 1rem;
 }
 
-.container .section .bottom-section .right .id-string {
+.main-container .section .bottom-section .right .id-string {
   margin-top: -10px;
   font-weight: 600;
   font-size: 1rem;
@@ -138,21 +159,19 @@
 .box2,
 .box3 {
   height: 160px;
-  flex-basis: 200px;
+  flex-basis: 180px;
   flex-grow: 1;
-  margin-top: 12px;
   position: relative;
-  
+  margin: 2px;
   background-color: rgba(241, 239, 235, 0.726);
 }
 
 .container .box4 {
   height: 160px;
   flex-basis: 350px;
-  margin-top: 12px;
-
+  flex-grow: 1;
+  margin: 2px;
   position: relative;
-  margin-right: 15px;
   background-color: rgba(241, 239, 235, 0.726);
 }
 
@@ -210,10 +229,157 @@
 }
 
 .container .box4 .inner-box .bottom-box {
-  height: 150px;
-  padding: 0 10px;
+  height: 66%;
   width: 400px;
-  padding: 20px;
-  overflow-y: scroll;
+  padding: 0 20px;
+  overflow-y: auto;
+}
+
+.fl-container {
+  height: inherit;
+  width: 95vw;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  margin: 0 auto;
+  justify-content: start;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  max-width: 95%;
+  border-radius: 5px;
+  align-items: stretch;
+  font-family: sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.24) 4px 1px 12px;
+}
+.fl-container .fl-box1,
+.fl-box2,
+.fl-box3 {
+  height: 160px;
+  flex-basis: 200px;
+  flex-grow: 1;
+  position: relative;
+  margin: 2px;
+  border-right: 1px solid grey;
+}
+
+.fl-container .fl-box4 {
+  height: 160px;
+  flex-basis: 200px;
+  flex-grow: 1;
+  margin: 2px;
+  position: relative;
+}
+
+.fl-container .fl-inner-box {
+  width: 100%;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fl-container .fl-inner-box .fl-left-top {
+  height: 60%;
+  width: 90%;
+  border-bottom: 1px solid grey;
+  position: relative;
+}
+.fl-container .fl-inner-box .fl-left-top .heading {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+}
+.fl-container .fl-inner-box .fl-left-top .heading-bottom {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  bottom: 3px;
+  gap: 4px;
+  color: black;
+  font-size: 0.7rem;
+  left: 0;
+  font-weight: 600;
+}
+.fl-container .fl-inner-box .fl-left-top .heading-bottom input {
+  outline: none;
+  border: none;
+}
+.fl-container .fl-inner-box .fl-left-bottom {
+  height: 40%;
+  width: 90%;
+  font-size: 0.8rem;
+  color: grey;
+  position: relative;
+}
+.fl-container .fl-inner-box .fl-left-bottom .fl-text {
+  position: absolute;
+  top: 15px;
+}
+.fl-container .fl-inner-box .fl-left-bottom span {
+  color: black;
+  font-weight: 600;
+}
+
+.fl-container .fl-box2 .fl-inner-box .fl-top {
+  height: 20%;
+  width: 90%;
+}
+.fl-container .fl-box2 .fl-inner-box .fl-top p {
+  position: absolute;
+  top: 10px;
+  left: 3px;
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+.fl-container .fl-box2 .fl-inner-box .fl-bottom {
+  height: 80%;
+  width: 90%;
+}
+
+.fl-container .fl-box3 .fl-inner-box .fl-top {
+  height: 20%;
+  width: 90%;
+}
+.fl-container .fl-box3 .fl-inner-box .fl-top p {
+  position: absolute;
+  top: 0;
+  left: 3px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.fl-container .fl-box4 .fl-inner-box {
+  width: 90%;
+  display: flex;
+  align-items: start;
+  justify-content: end;
+}
+.fl-container .fl-box4 .fl-inner-box .fl-heading {
+  position: absolute;
+  top: 14px;
+  left: 7%;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.fl-container .fl-box4 .fl-inner-box .fl-links {
+  height: 68%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+.fl-container .fl-box4 .fl-inner-box .fl-links a {
+ margin-left: 7%;
+}
+@media only screen and (max-width: 1343px) {
+  .container {
+    width: 95vw;
+  }
 }
 

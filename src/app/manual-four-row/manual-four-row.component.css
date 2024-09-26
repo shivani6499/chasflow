@@ -71,6 +71,16 @@
 .form-check-input {
   margin-top: 2px;
 }
+
+.modal-body {
+  max-height: 500px; /* Adjust the value to set the maximum height */
+  overflow-y: auto; /* Add scrollbar if content exceeds the set height */
+}
+
+.modal-content {
+  height: 450px; /* Set a fixed height for the modal content */
+}
+
 /* input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,

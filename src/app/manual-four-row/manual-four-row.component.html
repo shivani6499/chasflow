@@ -288,9 +288,9 @@
 
               <div class="col-md-3" id="recurringFieldsFrom">
                 <div class="mb-3">
-                  <label for="recurringFrom" class="form-label"
-                    >Recurring From<span class="requiredF">*</span></label
-                  >
+                  <label for="recurringFrom" class="form-label">
+                    Recurring From<span class="requiredF">*</span>
+                  </label>
                   <input
                     type="date"
                     class="form-control"
@@ -302,6 +302,7 @@
                   />
                 </div>
               </div>
+              
               <div class="col-md-3" id="recurringFieldsTo">
                 <div class="mb-3">
                   <label for="recurringTo" class="form-label"
@@ -469,11 +470,13 @@
                     </button>
                     <div class="btn-bottom">
                       <button
-                        class="btn btn-outline-secondary"
-                        (click)="onPrevious()"
-                      >
-                        <i class="mdi mdi-menu-left"></i>
-                      </button>
+                      class="btn btn-outline-secondary"
+                      (click)="onPrevious()"
+                      [disabled]="filterDataObj.page === 1"
+                    >
+                      <i class="mdi mdi-menu-left"></i>
+                    </button>
+                    
                       <span> {{ filterDataObj.page }} </span>
                       <button
                         class="btn btn-outline-secondary"

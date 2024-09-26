@@ -78,7 +78,7 @@
             </div>
 
             <!-- Search and Filter -->
-            <div class="row mb-3" *ngIf=" this.results.length !==0 ">
+            <div class="row mb-3" *ngIf="this.results.length !== 0">
               <div class="col-md-6">
                 <div class="input-group">
                   <select
@@ -86,20 +86,24 @@
                     (ngModelChange)="onOptionChange()"
                     class="form-select"
                     aria-label="Search By"
-                  >
+                  > 
                     <option [value]="0">Reference No</option>
                     <option [value]="1">Corporate Code</option>
                     <option [value]="2">Corporate Name</option>
                     <option [value]="3">Forecasting As</option>
                     <option [value]="4">Entry Type</option>
                   </select>
+                  
                   <input
                     type="text"
                     [(ngModel)]="searchValue"
                     class="search-value"
                     placeholder="Enter Search Value"
                     aria-label="Search Value"
+                    (keyup.enter)="search()" 
+                    (input)="onInputChange()" 
                   />
+                  
                   <button
                     class="btn btn-primary"
                     (click)="search()"
@@ -110,6 +114,7 @@
                 </div>
               </div>
             </div>
+            
 
             <!-- Action Buttons -->
             <div 
