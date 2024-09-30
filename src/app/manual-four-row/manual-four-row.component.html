@@ -1,3 +1,6 @@
+
+
+
 <div class="container-xxl flex-grow-1 container-p-y">
   <!-- <div class="app-ecommerce">  -->
   <div class="row">
@@ -355,13 +358,22 @@
                   Cancel
                 </button>
                 <button
-                  type="submit"
-                  class="btn btn-primary mt-3"
-                  id="fade-in-animation"
-                >
-                  Submit
-                </button>
-
+                *ngIf="!isSubmitting"
+                type="submit"
+                class="btn btn-primary mt-3"
+                id="fade-in-animation"
+              >
+                Submit
+              </button>
+              <button
+              *ngIf="isSubmitting"
+              type="button"
+              class="btn btn-primary mt-3"
+              disabled
+            >
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Submitting...
+            </button>
                 <!-- <button class="btn btn-primary" id="fade-in-animation">Fade In</button> -->
               </div>
               <!-- ----Code here -->

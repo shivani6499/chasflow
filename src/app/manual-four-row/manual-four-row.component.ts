@@ -397,7 +397,7 @@ export class ManualFourRowComponent implements OnInit, AfterViewInit {
     this.formData.corporateCode = user.corporateCode;
     this.formData.corporateName = user.corporateName;
   }
-
+  isSubmitting: boolean = false;
 submitForm(): void {
     const missingFields = this.checkForMissingFields();
     if (missingFields.length > 0) {
@@ -406,6 +406,7 @@ submitForm(): void {
         `The following fields are missing: ${missingFields.join(', ')}`
       );
     } else {
+      this.isSubmitting = true;
       this.http
         .post(baseUrl + 'forecasts', this.formData)
         .pipe(
@@ -414,6 +415,7 @@ submitForm(): void {
               'Error',
               'Error occurred while saving the forecast.'
             );
+            this.isSubmitting = false;
             return throwError(error);
           })
         )
@@ -442,6 +444,7 @@ submitForm(): void {
             recurringTo: '',
             recurrencePattern: '',
           };
+          this.isSubmitting = false; 
         });
     }
   }
