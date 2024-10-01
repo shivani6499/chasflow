@@ -327,25 +327,27 @@ export class ListingPageComponent implements OnInit {
   ) {}
 
   allData: any[] = [];
-
+  totalPages: number = 0;  // Total number of pages for the current dataset
+  totalElements: number = 0;  // Total number of elements
   filterDataObj = {
-    page: 0,
-    size: 50,
+    page: 0,  // Current page (starting from 0)
+    size: 10,  // Number of items per page
   };
   onPrevious() {
     if (this.filterDataObj.page > 0) {
       this.filterDataObj.page--;
       this.loadPendingData();
-      this.reviewBtnApi();
-      this.rejectBtn();
+      // this.reviewBtnApi();
+      // this.rejectBtn();
     }
   }
   onNext() {
-    this.filterDataObj.page++;
-    this.loadPendingData();
-    this.reviewBtnApi();
-    this.rejectBtn();
-  }
+    if (this.filterDataObj.page < this.totalPages - 1) {
+      this.filterDataObj.page++;  // Increment the current page
+      this.loadPendingData(); 
+    // this.reviewBtnApi();
+    // this.rejectBtn();
+  }}
 
   loadPendingData() {
     this.results = [];
@@ -358,6 +360,7 @@ export class ListingPageComponent implements OnInit {
     this.showAdditionalColumns = false;
     this.rejectionReason = '';
     this.setStatus('pending');
+    // this.loading = true;
     const params = new HttpParams()
       .set('page', this.filterDataObj.page.toString())
       .set('size', this.filterDataObj.size.toString());
@@ -365,7 +368,10 @@ export class ListingPageComponent implements OnInit {
       next: (response) => { 
         if (response && response.data && response.data.content) {
           this.results = response.data.content;
-          this.checkedItems = new Array(this.results.length).fill(false);
+          this.totalPages = response.data.totalPages;  // Set total pages
+          this.totalElements = response.data.totalElements;  // Set total elements
+          console.log( this.totalPages," this.totalPages")
+          console.log( this.totalElements," this.totalElements")
         } else { 
           // this.alertService.showAlert('Error', 'No entry found');
         }
@@ -383,13 +389,14 @@ export class ListingPageComponent implements OnInit {
     this.router.navigate(['/review', id]);
   }
 
-  private reviewBtnUrl = baseUrl + 'review-list';
+  // private reviewBtnUrl = baseUrl + 'review-list';
   private rejectBtnUrl = baseUrl + 'rejected';
 
   rejectBtnApi(): void {
     this.loading = true;
     this.loadRejectData().subscribe(
       (response) => { 
+        console.log("test1")
         this.results = response.data.content || [];
       },
       (error) => {
@@ -403,9 +410,8 @@ export class ListingPageComponent implements OnInit {
 
   private loadRejectData(): Observable<any> {
     const params = new HttpParams()
-      .set('page', this.filterDataObj.page.toString())
-      .set('size', this.filterDataObj.size.toString());
-    return this.http.get<any>(this.rejectBtnUrl, { params }).pipe(
+ console.log("test2")
+    return this.http.get<any>(this.rejectBtnUrl,).pipe(
       catchError((error) => { 
         return of({ data: [] }); // Return an empty result on error
       })
@@ -416,13 +422,12 @@ export class ListingPageComponent implements OnInit {
     this.results = [];
     this.loading = true;
     const params = new HttpParams()
-      .set('page', this.filterDataObj.page.toString())
-      .set('size', this.filterDataObj.size.toString());
     this.http
       .get<any>(baseUrl + 'review-list', { params })
       .subscribe((response) => { 
         this.results = response.data?.content || [];
         this.loading = false;
+   
       });
   }
 
